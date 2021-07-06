@@ -2,13 +2,6 @@ body {
     background-color: #fffef7;
 }
 
-@keyframes wiggle {
-    0%   {background-color: red;}
-    25%  {background-color: yellow;}
-    50%  {background-color: blue;}
-    100% {background-color: green;}
-}
-
 #heading {
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
     width: 480px;
