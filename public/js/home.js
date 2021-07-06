@@ -4,9 +4,12 @@ const LOOP_MAX_SECONDS = 7;
 const ANIMATION_MIN_SECONDS = 1;
 const ANIMATION_MAX_SECONDS = 2.5;
 
-// TODO don't move something if there's a cursor over it
+const WIGGLE_DISTANCE = 4;
+const WIGGLE_MIN_POSITIONS = 11;
+const WIGGLE_MAX_POSITIONS = 20;
 
 const handleTitle = () => {
+    console.log("Handle Title");
     // Get a random rotation
     const degrees = random(-10, 10);
     editCssWithId("#heading", {
@@ -15,48 +18,71 @@ const handleTitle = () => {
 };
 
 const handleVideoPortfolio = () => {
+    console.log("Handle Video Portfolio");
     // Moves along the x axis
-    // Requires that #music is positioned relatively or absolutely
-    // TODO calculate size of element and parent for better bounds
-    const leftPosition = random(0, 10);
-    editCssWithId("#music", {
+    const leftPosition = random(0, 96);
+    editCssWithId("#art-container", {
         left: `${leftPosition}px`,
     });
 };
 
 const handleVideoArt = () => {
     console.log("Handle Video Art");
-};
-
-const handleStills = () => {
-    // Moves along the y axis
-    // Requires that #stills is positioned relatively or absolutely
-    // TODO calculate size of element and parent for better bounds
-    const topPosition = random(0, 10);
-    editCssWithId("#stills", {
+    // Move along the y axis
+    const topPosition = random(0, 80);
+    editCssWithId("#music-container", {
         top: `${topPosition}px`,
     });
 };
 
+const handleStills = () => {
+    console.log("Handle Stills")
+};
+
 const handleAboutMe = () => {
     console.log("Handle About Me");
+    wiggle("#me-container");
+};
+
+const wiggle = (id) => {
+    const maxDistance = WIGGLE_DISTANCE;
+    const positions = random(WIGGLE_MIN_POSITIONS, WIGGLE_MAX_POSITIONS);
+    const duration = randomDuration();
+    const frameDuration = Math.round(duration / positions + 1);
+
+    const $element = $(id);
+    const topPx = parseInt($element.css("top"));
+    const leftPx = parseInt($element.css("left"));
+    for (let i = 0; i < positions; i++) {
+        const leftDela = random(-maxDistance, maxDistance);
+        const topDelta = random(-maxDistance, maxDistance);
+
+        const animation = {
+            top: `${topPx + topDelta}px`,
+            left: `${leftPx + leftDela}px`,
+        }
+        $element.animate(animation, frameDuration);
+    }
+    $element.animate({top: `${topPx}px`, left: `${leftPx}px`}, frameDuration);
 };
 
 const editCssWithId = (id, css) => {
-    // Get a random animation duration
-    const transition = random(ANIMATION_MIN_SECONDS * 1000, ANIMATION_MAX_SECONDS * 1000);
-    $(id).css({
-        ...css,
-        'transition': `${transition}ms ease-in-out`,
-    });
+    const $element = $(id);
+    if (!$element.is(":hover")) {
+        const transition = randomDuration();
+        $element.css({
+            ...css,
+            'transition': `${transition}ms ease-in-out`,
+        });
+    }
 };
 
 const handlers = [
     handleTitle,
-    // handleVideoPortfolio,
-    // handleVideoArt,
+    handleVideoPortfolio,
     // handleStills,
-    // handleAboutMe,
+    handleVideoArt,
+    handleAboutMe,
 ];
 
 /**
@@ -68,6 +94,9 @@ const handlers = [
 const random = (min, max) => {
     return min + Math.floor(Math.random() * (max - min));
 };
+
+const randomDuration = () =>
+    random(ANIMATION_MIN_SECONDS * 1000, ANIMATION_MAX_SECONDS * 1000);
 
 const loop = () => {
     // Select a random procedure

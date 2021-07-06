@@ -1,98 +1,113 @@
-@keyframes ani {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+body {
+    background-color: #fffef7;
+}
+
+@keyframes wiggle {
+    0%   {background-color: red;}
+    25%  {background-color: yellow;}
+    50%  {background-color: blue;}
+    100% {background-color: green;}
 }
 
 #heading {
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
-    width: 600px;
-    height: 330px;
+    width: 480px;
+    height: 260px;
     text-align: center;
-    font-size: 70px;
-    line-height: 100px;
+    font-size: 56px;
+    line-height: 80px;
     background-color: blue;
     color: yellow;
     font-weight: bold;
-    /*animation: ani 4s ease-in-out alternate*/
+    margin-top: 1.6em;
+    margin-bottom: 0.8em;
 }
 
+.button-space {
+    height: 240px;
+    width: 240px;
+    display: inline-block;
+    position: relative;
 
-#music {
+    /*FOR DEBUGGING ONLY*/
+    /*border-style: dotted;*/
+}
+
+.partial-menu-container {
+    display: inline-block;
+}
+
+#right-menu-container {
+}
+
+#left-menu-container {
+}
+
+.center {
+    margin: auto;
+}
+
+.center-elements {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.menu-button {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    border-radius: 30px;
-    width: 200px;
-    height: 180px;
-    background-color: lightcoral;
+    border-radius: 24px;
+    width: 160px;
+    height: 144px;
     color: green;
     font-weight: bold;
     text-align: center;
     font-size: 50px;
     text-shadow: 2px 5px 0 pink;
-    line-height: 70px;
+    line-height: 56px;
+    transition: 0.2s;
 }
 
-#music:hover {
-    border-radius: 100px;
-    transition: 0.3s
+.button-container {
+    left: 40px;
+    position: absolute;
+}
+
+.left-button-container {
+    top: 16px;
+}
+
+.right-button-container {
+    top: 80px;
+}
+
+.menu-button:hover {
+    border-radius: 60px;
+    cursor: pointer;
+}
+
+.menu-button:active {
+    border-radius: 80px;
+}
+
+#music {
+    background-color: lightcoral;
 }
 
 #art {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    border-radius: 30px;
-    width: 200px;
-    height: 180px;
     background-color: lightgoldenrodyellow;
-    color: green;
-    font-weight: bold;
-    text-align: center;
-    font-size: 50px;
-    text-shadow: 2px 5px 0 pink;
-    line-height: 70px;
-}
-
-#art:hover {
-    border-radius: 100px;
-    transition: 0.3s
 }
 
 #stills {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    border-radius: 30px;
-    width: 200px;
-    height: 180px;
     background-color: lightsteelblue;
-    color: green;
-    font-weight: bold;
-    text-align: center;
-    font-size: 50px;
-    text-shadow: 2px 5px 0 pink;
-    line-height: 70px;
-}
-
-#stills:hover {
-    border-radius: 100px;
-    transition: 0.3s
 }
 
 #me {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    border-radius: 30px;
-    width: 200px;
-    height: 180px;
     background-color: lightsalmon;
-    color: green;
-    font-weight: bold;
-    text-align: center;
-    font-size: 50px;
-    text-shadow: 2px 5px 0px pink;
-    line-height: 70px;
 }
 
-#me:hover {
-    border-radius: 100px;
-    transition: 0.3s
+#footnote {
+    position: absolute;
+    left: 8px;
+    bottom: 0;
 }
