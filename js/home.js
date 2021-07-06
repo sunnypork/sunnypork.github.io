@@ -1,6 +1,8 @@
 const LOOP_MIN_SECONDS = 2.5;
 const LOOP_MAX_SECONDS = 7;
 
+const ON_CLICK_DELAY_SECONDS = 0.5;
+
 const ANIMATION_MIN_SECONDS = 1;
 const ANIMATION_MAX_SECONDS = 2.5;
 
@@ -12,7 +14,7 @@ const handleTitle = () => {
     console.log("Handle Title");
     // Get a random rotation
     const degrees = random(-10, 10);
-    editCssWithId("#heading", {
+    editCssWithQuery("#heading", {
         'transform' : `rotate(${degrees}deg)`,
     });
 };
@@ -21,22 +23,22 @@ const handleVideoPortfolio = () => {
     console.log("Handle Video Portfolio");
     // Moves along the x axis
     const leftPosition = random(0, 96);
-    editCssWithId("#art-container", {
+    editCssWithQuery("#port-container", {
         left: `${leftPosition}px`,
     });
 };
 
 const handleVideoArt = () => {
-    console.log("Handle Video Art");
-    // Move along the y axis
-    const topPosition = random(0, 80);
-    editCssWithId("#music-container", {
-        top: `${topPosition}px`,
-    });
+    console.log("Handle Video Art")
 };
 
 const handleStills = () => {
-    console.log("Handle Stills")
+    console.log("Handle Stills");
+    // Move along the y axis
+    const topPosition = random(0, 80);
+    editCssWithQuery("#stills-container", {
+        top: `${topPosition}px`,
+    });
 };
 
 const handleAboutMe = () => {
@@ -66,8 +68,8 @@ const wiggle = (id) => {
     $element.animate({top: `${topPx}px`, left: `${leftPx}px`}, frameDuration);
 };
 
-const editCssWithId = (id, css) => {
-    const $element = $(id);
+const editCssWithQuery = (query, css) => {
+    const $element = $(query);
     if (!$element.is(":hover")) {
         const transition = randomDuration();
         $element.css({
@@ -80,8 +82,8 @@ const editCssWithId = (id, css) => {
 const handlers = [
     handleTitle,
     handleVideoPortfolio,
-    // handleStills,
     handleVideoArt,
+    handleStills,
     handleAboutMe,
 ];
 
@@ -111,6 +113,26 @@ const loop = () => {
 
 const init = () => {
     loop();
+    $(".menu-button").on('click', (event) => {
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+
+        const $target = $(event.target);
+        const delay = ON_CLICK_DELAY_SECONDS * 1000;
+        const transition = `${delay}ms ease-in-out`;
+
+        $("body").css({
+            'backgroundColor': $target.css("backgroundColor"),
+            transition,
+        });
+        $("#page").css({
+            'opacity': 0,
+            transition,
+        });
+        setTimeout(() => {
+            window.location.href = $target.data("href");
+        }, delay);
+    });
 };
 
 $(init);

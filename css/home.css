@@ -61,6 +61,10 @@ body {
     transition: 0.2s;
 }
 
+.menu-button span {
+    pointer-events: none;
+}
+
 .button-container {
     left: 40px;
     position: absolute;
@@ -83,12 +87,12 @@ body {
     border-radius: 80px;
 }
 
-#music {
-    background-color: lightcoral;
-}
-
 #art {
     background-color: lightgoldenrodyellow;
+}
+
+#port {
+    background-color: lightcoral;
 }
 
 #stills {
