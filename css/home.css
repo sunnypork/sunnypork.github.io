@@ -1,0 +1,112 @@
+@import "constants.css";
+
+body {
+    background-color: var(--home);
+}
+
+#heading {
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    width: 480px;
+    height: 260px;
+    text-align: center;
+    font-size: 56px;
+    line-height: 80px;
+    background-color: blue;
+    color: yellow;
+    font-weight: bold;
+    margin-top: 1.6em;
+    margin-bottom: 0.8em;
+}
+
+.button-space {
+    height: 240px;
+    width: 240px;
+    display: inline-block;
+    position: relative;
+
+    /*FOR DEBUGGING ONLY*/
+    /*border-style: dotted;*/
+}
+
+.partial-menu-container {
+    display: inline-block;
+}
+
+#right-menu-container {
+}
+
+#left-menu-container {
+}
+
+.center {
+    margin: auto;
+}
+
+.center-elements {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.menu-button {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-radius: 24px;
+    width: 160px;
+    height: 144px;
+    color: green;
+    font-weight: bold;
+    text-align: center;
+    font-size: 50px;
+    text-shadow: 2px 5px 0 pink;
+    line-height: 56px;
+    transition: 0.2s;
+}
+
+.menu-button span {
+    pointer-events: none;
+}
+
+.button-container {
+    left: 40px;
+    position: absolute;
+}
+
+.left-button-container {
+    top: 16px;
+}
+
+.right-button-container {
+    top: 80px;
+}
+
+.menu-button:hover {
+    border-radius: 60px;
+    cursor: pointer;
+}
+
+.menu-button:active {
+    border-radius: 80px;
+}
+
+#art {
+    background-color: var(--art);
+}
+
+#port {
+    background-color: var(--port);
+}
+
+#stills {
+    background-color: var(--stills);
+}
+
+#me {
+    background-color: var(--me);
+}
+
+#footnote {
+    position: absolute;
+    left: 8px;
+    bottom: 0;
+}

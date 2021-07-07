@@ -5,44 +5,65 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SUNNY PARK</title>
-    <link rel="stylesheet" href="./public/css/home.css">
+    <link rel="stylesheet" href="./css/home.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="./public/js/home.js"></script>
+    <script src="./js/home.js"></script>
 </head>
 
 <body>
-<!--heading-->
-<ul>
-    <div id="heading">
+<div id="page">
+    <div id="heading" class="center">
         <h1>Sunny's Website</h1>
-
     </div>
 
-    <!--MENU-->
-    <div>
-        <div id="art">
-            <a href="#">Video Art</a>
-        </div>
+    <div id="menu-container" class="center-elements">
+        <div id="menu" class="center center-elements">
+            <div id="left-menu-container" class="partial-menu-container">
+                <div class="button-space">
+                    <div id="port-container" class="button-container left-button-container">
+                        <div id="port" class="menu-button" data-href="html/port.html">
+                            <span>Video Port</span>
+                        </div>
+                    </div>
+                </div>
 
-        <div id="stills">
-            <a href="#">Stills</a>
-        </div>
+                <div class="button-space">
+                    <div id="art-container" class="button-container  right-button-container">
+                        <div id="art" class="menu-button" data-href="html/art.html">
+                            <span>Video Art</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div id= "music">
-            <a href="#">Music</a>
-        </div>
+            <div id="right-menu-container" class="partial-menu-container">
+                <div class="button-space">
+                    <div id="stills-container" class="button-container left-button-container">
+                        <div id="stills" class="menu-button" data-href="html/stills.html">
+                            <span>Stills</span>
+                        </div>
+                    </div>
+                </div>
 
-        <div id="me">
-            <a href="#">About Me</a>
+                <div class="button-space">
+                    <div id="me-container" class="button-container right-button-container">
+                        <div id="me" class="menu-button" data-href="html/me.html">
+                            <span>About Me</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-
-    <!--꼬릿말-->
-    <footnote>
+    <div id="footnote">
+        <!-- TODO remove <br/>s -->
         <br><br><br>
-        <p><del></del>Website coded by Braxton and Sunny</del></p>
-    </footnote>
-</ul>
+        <p>
+            Website coded by Braxton and Sunny
+        </p>
+    </div>
+</div>
+
 </body>
 </html>
