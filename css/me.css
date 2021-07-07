@@ -5,7 +5,7 @@ body {
 }
 
 #page {
-    opacity: 0;
+    display: none;
 }
 
 #heading {
@@ -27,18 +27,18 @@ body {
     margin-top: 2em;
 }
 
-.link {
+a {
     transition: 200ms;
     margin-left: 0.5em;
     margin-right: 0.5em;
 }
 
-.link:hover {
+a:hover {
     cursor: pointer;
     opacity: 0.5;
 }
 
-.link:active {
+a:active {
     filter: invert(1);
 }
 
