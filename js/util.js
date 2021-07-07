@@ -5,7 +5,11 @@
  * @return {number}
  */
 const random = (min, max) => {
-    return min + Math.floor(Math.random() * (max - min));
+    return Math.floor(randomFloat(min, max));
+};
+
+const randomFloat = (min, max) => {
+    return min + (Math.random() * (max - min));
 };
 
 const shuffleArray = (array) => {
@@ -15,4 +19,4 @@ const shuffleArray = (array) => {
         [copy[i], copy[j]] = [copy[j], copy[i]];
     }
     return copy;
-}
+};

@@ -5,19 +5,24 @@ const insertImage = (src) => {
         const $img = $(`<img class="still" src="${src}" alt="still"/>`);
         $('body').append($img);
         $img.one("load", () => {
-            const width = $img.width();
-            const height = $img.height();
-            const left = random(X_AXIS_MARGIN, $(window).width() - width - X_AXIS_MARGIN);
-            const top = bottom + random(NEXT_IMAGE_MIN_DELTA, NEXT_IMAGE_MAX_DELTA);
-            bottom = top + height;
-
-            $img.css({
-                left: `${left}px`,
-                top: `${top}px`,
-            });
-            $img.fadeIn("slow");
-            resolve();
+            resolve(onImageLoad($img));
         });
+    });
+};
+
+const onImageLoad = ($img) => {
+    return new Promise((resolve) => {
+        const width = $img.width();
+        const height = $img.height();
+        const left = random(X_AXIS_MARGIN, $(window).width() - width - X_AXIS_MARGIN);
+        const top = bottom + random(NEXT_IMAGE_MIN_DELTA, NEXT_IMAGE_MAX_DELTA);
+        bottom = top + height;
+        $img.css({
+            left: `${left}px`,
+            top: `${top}px`,
+        });
+        $img.fadeIn("slow");
+        resolve();
     });
 };
 
