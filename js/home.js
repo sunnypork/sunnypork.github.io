@@ -66,8 +66,12 @@ const wiggle = (id) => {
     const frameDuration = Math.round(duration / positions + 1);
 
     const $element = $(id);
-    const topPx = parseInt($element.css("top"));
-    const leftPx = parseInt($element.css("left"));
+    $element.stop(true);
+    // Must match .button-container and .right-button-container in home.css
+    const top = "80px"; // $element.css("top");
+    const left = "40px"; // $element.css("left");
+    const topPx = parseInt(top);
+    const leftPx = parseInt(left);
     for (let i = 0; i < positions; i++) {
         const leftDela = random(-maxDistance, maxDistance);
         const topDelta = random(-maxDistance, maxDistance);
@@ -78,11 +82,12 @@ const wiggle = (id) => {
         }
         $element.animate(animation, frameDuration);
     }
-    $element.animate({top: `${topPx}px`, left: `${leftPx}px`}, frameDuration);
+    $element.animate({top, left}, frameDuration);
 };
 
 const drip = (id) => {
     const $element = $(id);
+    $element.stop(true);
     // should match height of .menu-button in home.css
     const height = "144px"; // $element.css("height");
     const heightPx = parseInt(height);
