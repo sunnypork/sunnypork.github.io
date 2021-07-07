@@ -24,6 +24,7 @@ const createPreview = (id) => {
 const insertVideo = (link) => {
     return new Promise((resolve) => {
         const videoSizeFactor = randomFloat(VIDEO_MIN_SIZE_FACTOR, VIDEO_MAX_SIZE_FACTOR);
+        // TODO handle case where video is wider than screen
         const width = Math.round(BASE_WIDTH * videoSizeFactor);
         const height = Math.round(BASE_HEIGHT * videoSizeFactor);
         const title = "A Video";

@@ -12,6 +12,7 @@ const insertImage = (src) => {
 
 const onImageLoad = ($img) => {
     return new Promise((resolve) => {
+        // TODO handle case where image is wider than screen
         const width = $img.width();
         const height = $img.height();
         const left = random(X_AXIS_MARGIN, $(window).width() - width - X_AXIS_MARGIN);
