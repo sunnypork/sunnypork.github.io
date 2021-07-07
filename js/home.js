@@ -1,5 +1,8 @@
-const LOOP_MIN_SECONDS = 2.5;
-const LOOP_MAX_SECONDS = 7;
+const BUTTON_LOOP_MIN_SECONDS = 2.5;
+const BUTTON_LOOP_MAX_SECONDS = 7;
+
+const TITLE_LOOP_MIN_SECONDS = 0;
+const TITLE_LOOP_MAX_SECONDS = 0.3;
 
 const ON_CLICK_DELAY_SECONDS = 0.5;
 
@@ -14,8 +17,37 @@ const WIGGLE_DISTANCE = 3;
 const WIGGLE_MIN_POSITIONS = 11;
 const WIGGLE_MAX_POSITIONS = 20;
 
-const handleTitle = () => {
-    console.log("Handle Title");
+const NAME_REPLACEMENTS = [
+    ["S", "∫", "Ӷ", "ㄹ"],
+    ["U", "O", "Θ", "0", "μ"],
+    ["N", "η", "И"],
+    ["N", "n", "Π"],
+    ["Y", "γ", "Ӌ"],
+    [" ", "_", "-", "*"],
+    ["P", "ρ"],
+    ["A", "O", "Δ", "α", "λ"],
+    ["R", "Я"],
+    ["K", "Ҡ"],
+];
+const DEFAULT_TITLE = NAME_REPLACEMENTS
+    .map(r => r[0])
+    .join("");
+
+const setTitle = (title) => $("title").text(title);
+const randomizeTitle = () => {
+    const $title = $("title");
+    const titleText = $title.text();
+    const indexToReplace = random(0, titleText.length);
+    const candidateCharacters = NAME_REPLACEMENTS[indexToReplace];
+    const newCharacterIndex = random(0, candidateCharacters.length);
+    const newTitle = titleText.substr(0, indexToReplace) +
+        candidateCharacters[newCharacterIndex] +
+        titleText.substr(indexToReplace + 1);
+    setTitle(newTitle);
+};
+
+const handleHeader = () => {
+    console.log("Handle Header");
     // Get a random rotation
     const degrees = random(-10, 10);
     editCssWithQuery("#heading", {
@@ -52,7 +84,7 @@ const handleAboutMe = () => {
 };
 
 const handlers = [
-    handleTitle,
+    handleHeader,
     handleVideoPortfolio,
     handleVideoArt,
     handleStills,
@@ -128,9 +160,9 @@ const random = (min, max) => {
 const randomDuration = () =>
     random(ANIMATION_MIN_SECONDS * 1000, ANIMATION_MAX_SECONDS * 1000);
 
-let timeout;
+let buttonEventsTimeout;
 let last;
-const loop = () => {
+const loopButtonEvents = () => {
     // Select a random procedure index
     let index = random(0, handlers.length);
     // Prevent selecting the same handler index twice in a row
@@ -143,9 +175,15 @@ const loop = () => {
     // Perform said procedure
     handler();
     // Pick a random amount of time to wait before doing something new
-    const randomTime = random(LOOP_MIN_SECONDS * 1000, LOOP_MAX_SECONDS * 1000);
+    const randomTime = random(BUTTON_LOOP_MIN_SECONDS * 1000, BUTTON_LOOP_MAX_SECONDS * 1000);
     // Enqueue the new event
-    timeout = setTimeout(loop, randomTime);
+    buttonEventsTimeout = setTimeout(loopButtonEvents, randomTime);
+};
+
+const loopRandomizedTitle = () => {
+    randomizeTitle();
+    const randomTime = random(TITLE_LOOP_MIN_SECONDS * 1000, TITLE_LOOP_MAX_SECONDS * 1000);
+    setTimeout(loopRandomizedTitle, randomTime)
 };
 
 // This is TERRIBLE CODE
@@ -154,7 +192,7 @@ const onButtonClick = (event) => {
     event.stopPropagation();
     event.stopImmediatePropagation();
 
-    clearTimeout(timeout);
+    clearTimeout(buttonEventsTimeout);
 
     const $target = $(event.target);
     const delay = ON_CLICK_DELAY_SECONDS * 1000;
@@ -187,7 +225,9 @@ const onButtonClick = (event) => {
 };
 
 const init = () => {
-    loop();
+    setTitle(DEFAULT_TITLE);
+    loopButtonEvents();
+    loopRandomizedTitle();
     $(".menu-button").on('click', onButtonClick);
 };
 
