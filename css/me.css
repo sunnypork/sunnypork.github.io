@@ -1,5 +1,50 @@
-@import "constants.css";
+@import "global.css";
 
 body {
     background-color: var(--me);
+}
+
+#page {
+    opacity: 0;
+}
+
+#heading {
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    text-align: center;
+    font-size: 56px;
+    line-height: 80px;
+    color: #392a2a;
+    font-weight: bold;
+    margin-top: 15%;
+    margin-bottom: 0.8em;
+}
+
+#about {
+    max-width: 600px;
+}
+
+#link-palette {
+    margin-top: 2em;
+}
+
+.link {
+    transition: 200ms;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+.link:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.link:active {
+    filter: invert(1);
+}
+
+#instagram {
+    width: 25px;
+    height: 25px;
+    background-size: cover;
+    background-image: url("../img/instagram.png");
 }

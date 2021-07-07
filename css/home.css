@@ -1,4 +1,4 @@
-@import "constants.css";
+@import "global.css";
 
 body {
     background-color: var(--home);
@@ -36,17 +36,6 @@ body {
 }
 
 #left-menu-container {
-}
-
-.center {
-    margin: auto;
-}
-
-.center-elements {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
 }
 
 .menu-button {
