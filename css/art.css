@@ -2,4 +2,16 @@
 
 body {
     background-color: var(--art);
+    overflow-x: hidden;
+}
+
+.video {
+    display: none;
+    position: absolute;
+    border: 0;
+}
+
+.preview {
+    display: none;
+    position: absolute;
 }
