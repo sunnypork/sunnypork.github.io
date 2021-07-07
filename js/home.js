@@ -46,6 +46,14 @@ const handleAboutMe = () => {
     wiggle("#me-container");
 };
 
+const handlers = [
+    handleTitle,
+    handleVideoPortfolio,
+    // handleVideoArt,
+    handleStills,
+    handleAboutMe,
+];
+
 const wiggle = (id) => {
     const maxDistance = WIGGLE_DISTANCE;
     const positions = random(WIGGLE_MIN_POSITIONS, WIGGLE_MAX_POSITIONS);
@@ -79,14 +87,6 @@ const editCssWithQuery = (query, css) => {
     }
 };
 
-const handlers = [
-    handleTitle,
-    handleVideoPortfolio,
-    handleVideoArt,
-    handleStills,
-    handleAboutMe,
-];
-
 /**
  * Gets a random number between [min, max)
  * @param min lower bound
@@ -100,6 +100,7 @@ const random = (min, max) => {
 const randomDuration = () =>
     random(ANIMATION_MIN_SECONDS * 1000, ANIMATION_MAX_SECONDS * 1000);
 
+let timeout;
 const loop = () => {
     // Select a random procedure
     const handler = handlers[random(0, handlers.length)];
@@ -108,31 +109,48 @@ const loop = () => {
     // Pick a random amount of time to wait before doing something new
     const randomTime = random(LOOP_MIN_SECONDS * 1000, LOOP_MAX_SECONDS * 1000);
     // Enqueue the new event
-    setTimeout(loop, randomTime);
+    timeout = setTimeout(loop, randomTime);
+};
+
+// This is TERRIBLE CODE
+// Please don't look at it
+const onButtonClick = (event) => {
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+
+    clearTimeout(timeout);
+
+    const $target = $(event.target);
+    const delay = ON_CLICK_DELAY_SECONDS * 1000;
+    const transition = `${delay}ms ease-in-out`;
+
+    const $window = $(window);
+    const $parent = $target.parent();
+    $parent.stop(true);
+
+    const grandparentPos = $parent.parent().position();
+    $parent.css({
+        zIndex: 999
+    });
+    $target.css({
+        width: $window.width() * 2,
+        height: $window.height() * 2,
+        transition,
+    });
+    $parent.css({
+        top: - grandparentPos.top - ($window.height() / 2),
+        left: - grandparentPos.left - ($window.width() / 2),
+        transition,
+    })
+
+    setTimeout(() => {
+        window.location.href = $target.data("href");
+    }, delay);
 };
 
 const init = () => {
     loop();
-    $(".menu-button").on('click', (event) => {
-        event.stopPropagation();
-        event.stopImmediatePropagation();
-
-        const $target = $(event.target);
-        const delay = ON_CLICK_DELAY_SECONDS * 1000;
-        const transition = `${delay}ms ease-in-out`;
-
-        $("body").css({
-            'backgroundColor': $target.css("backgroundColor"),
-            transition,
-        });
-        $("#page").css({
-            'opacity': 0,
-            transition,
-        });
-        setTimeout(() => {
-            window.location.href = $target.data("href");
-        }, delay);
-    });
+    $(".menu-button").on('click', onButtonClick);
 };
 
 $(init);
