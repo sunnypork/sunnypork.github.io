@@ -6,7 +6,11 @@ const ON_CLICK_DELAY_SECONDS = 0.5;
 const ANIMATION_MIN_SECONDS = 1;
 const ANIMATION_MAX_SECONDS = 2.5;
 
-const WIGGLE_DISTANCE = 4;
+const DRIP_ANIMATION_RATIO = 0.9;
+const DRIP_MIN = 20;
+const DRIP_MAX = 100;
+
+const WIGGLE_DISTANCE = 3;
 const WIGGLE_MIN_POSITIONS = 11;
 const WIGGLE_MAX_POSITIONS = 20;
 
@@ -29,7 +33,8 @@ const handleVideoPortfolio = () => {
 };
 
 const handleVideoArt = () => {
-    console.log("Handle Video Art")
+    console.log("Handle Video Art");
+    drip("#art");
 };
 
 const handleStills = () => {
@@ -49,7 +54,7 @@ const handleAboutMe = () => {
 const handlers = [
     handleTitle,
     handleVideoPortfolio,
-    // handleVideoArt,
+    handleVideoArt,
     handleStills,
     handleAboutMe,
 ];
@@ -74,6 +79,24 @@ const wiggle = (id) => {
         $element.animate(animation, frameDuration);
     }
     $element.animate({top: `${topPx}px`, left: `${leftPx}px`}, frameDuration);
+};
+
+const drip = (id) => {
+    const $element = $(id);
+    // should match height of .menu-button in home.css
+    const height = "144px"; // $element.css("height");
+    const heightPx = parseInt(height);
+    const newHeight = heightPx + random(DRIP_MIN, DRIP_MAX);
+
+    const duration = randomDuration();
+    const dripSpeed = DRIP_ANIMATION_RATIO * duration;
+    const snapBackSpeed = (DRIP_ANIMATION_RATIO - 1) * duration;
+    $element.animate({
+        height: `${newHeight}px`,
+    }, dripSpeed);
+    $element.animate({
+        height,
+    }, snapBackSpeed);
 };
 
 const editCssWithQuery = (query, css) => {
@@ -101,9 +124,17 @@ const randomDuration = () =>
     random(ANIMATION_MIN_SECONDS * 1000, ANIMATION_MAX_SECONDS * 1000);
 
 let timeout;
+let last;
 const loop = () => {
-    // Select a random procedure
-    const handler = handlers[random(0, handlers.length)];
+    // Select a random procedure index
+    let index = random(0, handlers.length);
+    // Prevent selecting the same handler index twice in a row
+    if (index === last) {
+        index = (index + 1) % handlers.length;
+    }
+    last = index;
+    // Select the handler
+    const handler = handlers[index];
     // Perform said procedure
     handler();
     // Pick a random amount of time to wait before doing something new
@@ -126,6 +157,8 @@ const onButtonClick = (event) => {
 
     const $window = $(window);
     const $parent = $target.parent();
+
+    $target.stop(true);
     $parent.stop(true);
 
     const grandparentPos = $parent.parent().position();
