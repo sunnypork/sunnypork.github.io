@@ -1,6 +1,7 @@
 const BUTTON_LOOP_MIN_SECONDS = 2.5;
 const BUTTON_LOOP_MAX_SECONDS = 7;
 
+const TITLE_LOOP_DELAY_SECONDS = 2;
 const TITLE_LOOP_MIN_SECONDS = 0;
 const TITLE_LOOP_MAX_SECONDS = 0.3;
 
@@ -226,8 +227,8 @@ const onButtonClick = (event) => {
 
 const init = () => {
     setTitle(DEFAULT_TITLE);
+    setTimeout(loopRandomizedTitle, TITLE_LOOP_DELAY_SECONDS * 1000);
     loopButtonEvents();
-    loopRandomizedTitle();
     $(".menu-button").on('click', onButtonClick);
 };
 
