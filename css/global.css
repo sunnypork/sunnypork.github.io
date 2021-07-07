@@ -1,0 +1,18 @@
+:root {
+    --home: #fffef7;
+    --port: lightcoral;
+    --art: lightgoldenrodyellow;
+    --stills: lightsteelblue;
+    --me: lightsalmon;
+}
+
+.center {
+    margin: auto;
+}
+
+.center-elements {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
