@@ -1,5 +1,7 @@
+@import "constants.css";
+
 body {
-    background-color: #fffef7;
+    background-color: var(--home);
 }
 
 #heading {
@@ -88,19 +90,19 @@ body {
 }
 
 #art {
-    background-color: lightgoldenrodyellow;
+    background-color: var(--art);
 }
 
 #port {
-    background-color: lightcoral;
+    background-color: var(--port);
 }
 
 #stills {
-    background-color: lightsteelblue;
+    background-color: var(--stills);
 }
 
 #me {
-    background-color: lightsalmon;
+    background-color: var(--me);
 }
 
 #footnote {
