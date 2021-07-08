@@ -2,6 +2,8 @@
 
 body {
     background-color: var(--home);
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 #heading {
@@ -43,7 +45,6 @@ body {
     border-radius: 24px;
     width: 160px;
     height: 144px;
-    color: green;
     font-weight: bold;
     text-align: center;
     font-size: 50px;
@@ -52,8 +53,12 @@ body {
     transition: 0.2s;
 }
 
-.menu-button span {
-    pointer-events: none;
+.menu-button a:link {
+    color: green;
+}
+
+.menu-button a:visited {
+    color: darkgreen;
 }
 
 .button-container {
