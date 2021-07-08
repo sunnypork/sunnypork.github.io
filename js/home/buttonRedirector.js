@@ -12,6 +12,7 @@ const onButtonClick = (event) => {
 
     const $window = $(window);
     const $parent = $target.parent();
+    const $a = $target.find("a");
 
     $target.stop(true);
     $parent.stop(true);
@@ -30,9 +31,10 @@ const onButtonClick = (event) => {
         left: - grandparentPos.left - ($window.width() / 2),
         transition,
     });
+    $a.fadeOut("fast");
 
     setTimeout(() => {
-        window.location.href = $target.find("a").attr("href");
+        window.location.href = $a.attr("href");
     }, delay);
 };
 
