@@ -20,5 +20,5 @@ A simple website made with simple tools
 ## Adding to About Me
 
 1. Go to [`me.html`](./html/me.html)
-1. Eddit the element `#about`
+1. Edit the element `#about`
 

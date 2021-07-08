@@ -9,6 +9,8 @@ const X_AXIS_MARGIN = 0;
 const NEXT_VIDEO_MIN_DELTA = 2;
 const NEXT_VIDEO_MAX_DELTA = 100;
 
+const WIDTH_OVERFLOW_FACTOR = 2;
+
 const VIDEOS = [
     "https://www.youtube.com/watch?v=Hril6efo8eQ",
     "https://www.youtube.com/watch?v=ivCY3Ec4iaU",
