@@ -1,8 +1,8 @@
 // This is TERRIBLE CODE
 // Please don't look at it
 const onButtonClick = (event) => {
-    event.stopPropagation();
-    event.stopImmediatePropagation();
+    event.preventDefault();
+    console.log("On Button Click")
 
     clearTimeout(buttonEventsTimeout);
 
@@ -29,14 +29,22 @@ const onButtonClick = (event) => {
         top: - grandparentPos.top - ($window.height() / 2),
         left: - grandparentPos.left - ($window.width() / 2),
         transition,
-    })
+    });
 
     setTimeout(() => {
-        window.location.href = $target.data("href");
+        window.location.href = $target.find("a").attr("href");
     }, delay);
 };
 
+// This probably isn't the **correct** way to do this
+const onLinkClick = (event) => {
+    event.stopPropagation();
+    event.target = $(event.target).parent();
+    onButtonClick(event);
+};
+
 const initRedirector = () => {
+    $("a").on('click', onLinkClick);
     $(".menu-button").on('click', onButtonClick);
 };
 
