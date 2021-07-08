@@ -24,9 +24,12 @@ const createPreview = (id) => {
 const insertVideo = (link) => {
     return new Promise((resolve) => {
         const videoSizeFactor = randomFloat(VIDEO_MIN_SIZE_FACTOR, VIDEO_MAX_SIZE_FACTOR);
-        // TODO handle case where video is wider than screen
-        const width = Math.round(BASE_WIDTH * videoSizeFactor);
-        const height = Math.round(BASE_HEIGHT * videoSizeFactor);
+        let dynamicSizeFactor = 1;
+        while (BASE_WIDTH * videoSizeFactor * dynamicSizeFactor > $(window).width()) {
+            dynamicSizeFactor = dynamicSizeFactor / WIDTH_OVERFLOW_FACTOR;
+        }
+        const width = Math.round(BASE_WIDTH * videoSizeFactor * dynamicSizeFactor);
+        const height = Math.round(BASE_HEIGHT * videoSizeFactor * dynamicSizeFactor);
         const title = "A Video";
         const id = getVideoId(link);
         const $iframe = createVideoIframe({id, title, width, height});
