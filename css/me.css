@@ -31,6 +31,10 @@ a {
     transition: 200ms;
     margin-left: 0.5em;
     margin-right: 0.5em;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 25px;
 }
 
 a:hover {
@@ -44,7 +48,10 @@ a:active {
 
 #instagram {
     width: 25px;
-    height: 25px;
-    background-size: cover;
     background-image: url("../img/instagram.png");
+}
+
+#youtube {
+    width: 30px;
+    background-image: url("../img/youtube.png");
 }
