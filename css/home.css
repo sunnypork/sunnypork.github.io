@@ -71,7 +71,7 @@ body {
 }
 
 .right-button-container {
-    top: 120px;
+    top: 80px;
 }
 
 .menu-button:hover {
@@ -80,7 +80,7 @@ body {
 }
 
 .menu-button:active {
-    border-radius: 100px;
+    border-radius: 80px;
 }
 
 #art {
