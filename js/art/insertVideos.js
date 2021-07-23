@@ -15,13 +15,14 @@ const createVideoIframe = ({id, title, width, height}) => {
     return $iframe;
 };
 
-const createPreview = (id) => {
-    const $img = $(`<img class="preview" src="https://img.youtube.com/vi/${id}/maxresdefault.jpg" alt="preview"/>`);
+const createPreview = (id, preview) => {
+    const previewLink = preview ? preview : `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+    const $img = $(`<img class="preview" src="${previewLink}" alt="preview"/>`);
     $img.data("id", id);
     return $img;
 };
 
-const insertVideo = (link) => {
+const insertVideo = (video) => {
     return new Promise((resolve) => {
         const videoSizeFactor = randomFloat(VIDEO_MIN_SIZE_FACTOR, VIDEO_MAX_SIZE_FACTOR);
         let dynamicSizeFactor = 1;
@@ -31,9 +32,11 @@ const insertVideo = (link) => {
         const width = Math.round(BASE_WIDTH * videoSizeFactor * dynamicSizeFactor);
         const height = Math.round(BASE_HEIGHT * videoSizeFactor * dynamicSizeFactor);
         const title = "A Video";
+        const link = video.video ? video.video : video;
         const id = getVideoId(link);
         const $iframe = createVideoIframe({id, title, width, height});
-        const $preview = createPreview(id);
+        const {preview} = video; // Might have preview link already
+        const $preview = createPreview(id, preview);
         $("body").append($iframe, $preview);
         $iframe.one("load", () => {
             resolve(onVideoLoad($iframe, $preview, height, width));

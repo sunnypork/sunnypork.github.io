@@ -12,9 +12,17 @@ const NEXT_VIDEO_MAX_DELTA = 100;
 const WIDTH_OVERFLOW_FACTOR = 2;
 
 const VIDEOS = [
-    "https://www.youtube.com/watch?v=Hril6efo8eQ",
-    "https://www.youtube.com/watch?v=ivCY3Ec4iaU",
-    "https://www.youtube.com/watch?v=Bm5iA4Zupek",
-    "https://www.youtube.com/watch?v=p7FCgw_GlWc",
-    "https://www.youtube.com/watch?v=6CHs4x2uqcQ",
+    "https://www.youtube.com/watch?v=sAdfuqRl3ZA",
+    "https://www.youtube.com/watch?v=1kV9KwPlYgc",
+    "https://www.youtube.com/watch?v=eNf_Kc6EyvA",
+    "https://www.youtube.com/watch?v=QTDgQN1yC1I",
+    "https://www.youtube.com/watch?v=wM_9v42Vc-Y",
+    {
+        video: "https://www.youtube.com/watch?v=IOPt4T5VPYM",
+        preview: "https://img.youtube.com/vi/IOPt4T5VPYM/mqdefault.jpg",
+    },
+    {
+        video: "https://www.youtube.com/watch?v=JC8TwhX_Ea0",
+        preview: "https://img.youtube.com/vi/JC8TwhX_Ea0/mqdefault.jpg",
+    },
 ];
