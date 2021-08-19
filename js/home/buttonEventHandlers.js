@@ -1,7 +1,7 @@
 const handleHeader = () => {
     console.log("Handle Header");
     // Get a random rotation
-    const degrees = random(-10, 10);
+    const degrees = random(-HEADING_ROTATION_ABS_MAX_DEGREES, HEADING_ROTATION_ABS_MAX_DEGREES);
     editCssWithQuery("#heading", {
         'transform' : `rotate(${degrees}deg)`,
     });
