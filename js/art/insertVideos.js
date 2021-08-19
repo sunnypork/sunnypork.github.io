@@ -71,10 +71,6 @@ const onVideoLoad = ($iframe, $preview, heightPx, widthPx) => {
     });
 };
 
-const insertVideos = () => {
-    return shuffleArray(VIDEOS).map(insertVideo);
-};
-
 const onVideoEnter = (event) => {
     const $target = $(event.target);
     $target.css({pointerEvents: "none"});
@@ -84,8 +80,12 @@ const onVideoEnter = (event) => {
 };
 
 const init = () => {
-    insertVideos();
-    $(".preview").on("mouseenter", onVideoEnter);
+    Promise.all(shuffleArray(VIDEOS).map(insertVideo))
+        .then(() => {
+            $(".preview").on("mouseenter", onVideoEnter);
+            const height = bottom + random(NEXT_VIDEO_MIN_DELTA, NEXT_VIDEO_MAX_DELTA);
+            $("body").css({height});
+        });
 };
 
 $(init);
