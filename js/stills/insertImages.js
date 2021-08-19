@@ -4,6 +4,7 @@ const insertImage = (src) => {
     return new Promise((resolve) => {
         const $img = $(`<img class="still" src="${src}" alt="still"/>`);
         $('body').append($img);
+        $img.on("click", () => window.open(src, "_blank"));
         $img.one("load", () => {
             resolve(onImageLoad($img));
         });
