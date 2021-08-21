@@ -15,7 +15,7 @@ body {
     line-height: 80px;
     color: #392a2a;
     font-weight: bold;
-    margin-top: 15%;
+    margin-top: 12%;
     margin-bottom: 0.8em;
 }
 
@@ -23,8 +23,13 @@ body {
     max-width: 600px;
 }
 
-#link-palette {
+#blurry-boi {
     margin-top: 2em;
+    max-width: 200px;
+}
+
+#link-palette {
+    margin-top: 1em;
 }
 
 a {
