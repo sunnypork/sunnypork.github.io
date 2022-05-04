@@ -2,10 +2,27 @@
 
 body {
     background-image: linear-gradient(#fffef7, #fffef7); /* PLACEHOLDER (colours do not matter here) */
-    width: 100%;
-    /*height: 100vh;*/ /* TODO why is the height broken?*/
     overflow-x: hidden;
     overflow-y: hidden;
+}
+
+.background {
+    background-color: var(--home);
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+#bg-1 {
+    z-index: -2;
+}
+
+#bg-2 {
+    z-index: -1;
 }
 
 #heading {
