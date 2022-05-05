@@ -13,7 +13,7 @@ const insertImage = (src) => {
 
 const onImageLoad = ($img) => {
     return new Promise((resolve) => {
-        while ($img.width() > $(window).width()) {
+        while ($img.width() > $(window).width() || $img.height() > $(window).height()) {
             $img.css({width: `${$img.width() / WIDTH_OVERFLOW_FACTOR}px`})
         }
         const width = $img.width();
@@ -43,7 +43,7 @@ const atBottomOfPage = () => {
     const $window = $(window);
     const scrollHeight = $(document).height();
     const scrollPosition = $window.height() + $window.scrollTop();
-    return (scrollHeight - scrollPosition) / scrollHeight === 0;
+    return (scrollHeight - scrollPosition) / scrollHeight < 0.05;
 }
 
 const fillPage = () => {
