@@ -45,9 +45,16 @@ const onLinkClick = (event) => {
     onButtonClick(event);
 };
 
+const resetPage = (event) => {
+    if (event.persisted) {
+        window.location.reload();
+    }
+};
+
 const initRedirector = () => {
     $("a").on('click', onLinkClick);
     $(".menu-button").on('click', onButtonClick);
+    window.addEventListener("pageshow", resetPage);
 };
 
 $(initRedirector);
