@@ -1,4 +1,5 @@
-const FLIP_INTERVAL_MILLISECONDS = 1500;
+const FLIP_INTERVAL_MILLISECONDS_MIN = 800;
+const FLIP_INTERVAL_MILLISECONDS_MAX = 2500;
 
 let flipped = false;
 const flipClass = 'flip';
@@ -13,10 +14,11 @@ const loopFlip = () => {
         }
         flipped = !flipped;
     }
+    setTimeout(loopFlip, random(FLIP_INTERVAL_MILLISECONDS_MIN, FLIP_INTERVAL_MILLISECONDS_MAX));
 };
 
 const init = () => {
-    setInterval(loopFlip, FLIP_INTERVAL_MILLISECONDS);
+    setTimeout(loopFlip, FLIP_INTERVAL_MILLISECONDS_MAX);
 };
 
 $(init);
