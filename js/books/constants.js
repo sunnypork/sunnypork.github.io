@@ -1,10 +1,10 @@
 const BOOKS = [
     {
         id: "test-1",
-        name: "Testing Name 1",
-        preview: "../img/instagram.png",
+        name: "Growing Up",
+        preview: "../img/books/growing-up.png",
         description: "This page is currently under construction but when it is finished it will look amazzing with all my books!!!!!!",
-        pdf: "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf",
+        pdf: "../pdf/growing-up.pdf",
     },
     {
         id: "test-2",

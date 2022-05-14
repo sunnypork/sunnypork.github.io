@@ -4,7 +4,7 @@ var pdfjsLib = window['pdfjs-dist/build/pdf'];
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.13.216/build/pdf.worker.js';
 
 class PDF {
-    static SCALE = 0.8;
+    static SCALE = 0.7; // TODO make the scale based on the window size
 
     pdfDoc = null;
     pageNum = 1;
@@ -21,8 +21,8 @@ class PDF {
 
         pdfjsLib.getDocument(url).promise.then((pdfDoc) => {
             this.pdfDoc = pdfDoc;
+            $modal.find('.page-num').text(this.pageNum);
             $modal.find(".page-count").text(pdfDoc.numPages);
-            // Initial/first page rendering
             this.renderPage(this.pageNum, $modal);
         });
     }
@@ -33,6 +33,7 @@ class PDF {
         } else {
             this.renderPage(num, $modal);
         }
+        $modal.find('.page-num').text(num);
     }
 
     onPrevPage = ($modal) => () => {
@@ -74,9 +75,6 @@ class PDF {
                 }
             });
         });
-
-        // Update page counters
-        $modal.find('.page-num').text(num);
     }
 }
 

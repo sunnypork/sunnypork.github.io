@@ -55,7 +55,6 @@ body {
 
 #entries > div > a:hover {
     filter: brightness(50%);
-    opacity: 0.5; /*TODO remove this line when there is real stuff here*/
 }
 
 #entries > div > a > img {
