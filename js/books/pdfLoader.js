@@ -21,9 +21,8 @@ class PDF {
 
         pdfjsLib.getDocument(url).promise.then((pdfDoc) => {
             this.pdfDoc = pdfDoc;
-            $modal.find('.page-num').text(this.pageNum);
             $modal.find(".page-count").text(pdfDoc.numPages);
-            this.renderPage(this.pageNum, $modal);
+            this.queueRenderPage(this.pageNum, $modal)
         });
     }
 
