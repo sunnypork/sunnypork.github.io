@@ -12,45 +12,46 @@ class PDF {
     context;
 
     constructor(id, url) {
-        const $modal = $(`#${id}`);
-        const $canvas = $modal.find('canvas');
+        const $container = $(`#${id}`);
+        const $canvas = $container.find('canvas');
         this.context = $canvas[0].getContext('2d');
-        $modal.find(".prev").on('click', this.onPrevPage($modal));
-        $modal.find(".next").on('click', this.onNextPage($modal));
+        $container.find(".prev").on('click', this.onPrevPage($container));
+        $container.find(".next").on('click', this.onNextPage($container));
 
         pdfjsLib.getDocument(url).promise.then((pdfDoc) => {
             this.pdfDoc = pdfDoc;
-            $modal.find(".page-count").text(pdfDoc.numPages);
-            this.queueRenderPage(this.pageNum, $modal)
+            $container.find(".page-count").text(pdfDoc.numPages);
+            this.queueRenderPage(this.pageNum, $container);
+            $(window).resize(() => this.queueRenderPage(this.pageNum, $container))
         });
     }
 
-    queueRenderPage(num, $modal) {
+    queueRenderPage(num, $container) {
         if (this.pageRendering) {
             this.pageNumPending = num;
         } else {
-            this.renderPage(num, $modal);
+            this.renderPage(num, $container);
         }
-        $modal.find('.page-num').text(num);
+        $container.find('.page-num').text(num);
     }
 
-    onPrevPage = ($modal) => () => {
+    onPrevPage = ($container) => () => {
         if (this.pageNum <= 1) {
             return;
         }
         this.pageNum--;
-        this.queueRenderPage(this.pageNum, $modal);
+        this.queueRenderPage(this.pageNum, $container);
     };
 
-    onNextPage = ($modal) => () => {
+    onNextPage = ($container) => () => {
         if (this.pageNum >= this.pdfDoc.numPages) {
             return;
         }
         this.pageNum++;
-        this.queueRenderPage(this.pageNum, $modal);
+        this.queueRenderPage(this.pageNum, $container);
     };
 
-    renderPage(num, $modal) {
+    renderPage(num, $container) {
         this.pageRendering = true;
         // Using promise to fetch the page
         this.pdfDoc.getPage(num).then((page) => {
@@ -70,7 +71,7 @@ class PDF {
                 this.pageRendering = false;
                 if (this.pageNumPending !== null) {
                     // New page rendering is pending
-                    this.renderPage(this.pageNumPending, $modal);
+                    this.renderPage(this.pageNumPending, $container);
                     this.pageNumPending = null;
                 }
             });

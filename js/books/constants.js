@@ -21,12 +21,3 @@ const BOOKS = [
         pdf: "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf",
     }
 ];
-
-$.modal.defaults = {
-    closeExisting: true,
-    escapeClose: true,
-    clickClose: true,
-    showClose: true,
-    fadeDuration: 200,
-    fadeDelay: 0.8,
-};
