@@ -1,5 +1,4 @@
 const handleHeader = () => {
-    console.log("Handle Header");
     // Get a random rotation
     const degrees = random(-HEADING_ROTATION_ABS_MAX_DEGREES, HEADING_ROTATION_ABS_MAX_DEGREES);
     editCssWithQuery("#heading", {
@@ -8,7 +7,6 @@ const handleHeader = () => {
 };
 
 const handleVideoPortfolio = () => {
-    console.log("Handle Video Portfolio");
     // Moves along the x axis
     const leftPosition = random(0, 96);
     editCssWithQuery("#port-container", {
@@ -17,12 +15,10 @@ const handleVideoPortfolio = () => {
 };
 
 const handleVideoArt = () => {
-    console.log("Handle Video Art");
     drip("#art");
 };
 
 const handleStills = () => {
-    console.log("Handle Stills");
     // Move along the y axis
     const topPosition = random(0, 80);
     editCssWithQuery("#stills-container", {
@@ -31,7 +27,6 @@ const handleStills = () => {
 };
 
 const handleAboutMe = () => {
-    console.log("Handle About Me");
     wiggle("#me-container");
 };
 
