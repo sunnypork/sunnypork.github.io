@@ -3,7 +3,7 @@ const BOOKS = [
         id: "test-1",
         name: "Testing Name",
         preview: "../img/instagram.png",
-        description: "This page is currently under construction but when it is finished it will look amazzing with all my books!!!!!! WOAHOAOAOAAHHOAAAAAAHO!!!!!",
+        description: "This page is currently under construction but when it is finished it will look amazzing with all my books!!!!!!",
         pdf: "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf",
     },
     {
@@ -17,7 +17,7 @@ const BOOKS = [
         id: "test-3",
         name: "Testing Name",
         preview: "../img/instagram.png",
-        description: "This page is currently under construction but when it is finished it will look amazzing with all my books!!!!!! WOAHOAOAOAAHHOAAAAAAHO!!!!!",
+        description: "This page is currently under construction but when it is finished it will look amazzing with all my books!!!!!!",
         pdf: "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf",
     }
 ];
