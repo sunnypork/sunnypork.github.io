@@ -17,8 +17,10 @@ function createPDFModal(book) {
 
 
 function createDescription(book) {
+    const $title = $('<h3></h3>');
+    $title.text(book.name);
     const $description = $('<p></p>');
-    $description.text(book.description);
+    $description.append($title, book.description);
     return $description;
 }
 
@@ -27,7 +29,7 @@ function createPreview(book) {
     const $img = $('<img alt="" src="">');
     $img.attr("alt", name);
     $img.attr("src", preview);
-    const $a = $('<a rel="modal:open"></a>');
+    const $a = $('<a class="center-elements" rel="modal:open"></a>');
     $a.attr("href", `#${id}`);
     $a.append($img);
     return $a;
