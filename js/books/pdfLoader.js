@@ -4,7 +4,6 @@ var pdfjsLib = window['pdfjs-dist/build/pdf'];
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.13.216/build/pdf.worker.js';
 
 class PDF {
-    static SCALE = 0.7; // TODO make the scale based on the window size
 
     pdfDoc = null;
     pageNum = 1;
@@ -55,7 +54,9 @@ class PDF {
         this.pageRendering = true;
         // Using promise to fetch the page
         this.pdfDoc.getPage(num).then((page) => {
-            const viewport = page.getViewport({scale: PDF.SCALE});
+            const [,, width] = page.view;
+            const scale = Math.min(($(window).width() * 0.5) / width, 1);
+            const viewport = page.getViewport({scale});
             this.context.canvas.height = viewport.height;
             this.context.canvas.width = viewport.width;
 
