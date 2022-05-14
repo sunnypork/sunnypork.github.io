@@ -31,3 +31,13 @@ body {
     font-size: 20px;
     /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
 }
+
+#entries > div > a:hover {
+    filter: brightness(50%);
+    opacity: 0.5; /*TODO remove this line when there is real stuff here*/
+}
+
+canvas {
+    /*TODO what does this do???*/
+    direction: ltr;
+}
