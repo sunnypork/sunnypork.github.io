@@ -1,17 +1,17 @@
 function createPDFModal(book) {
     const {id} = book;
     const $modal = $(`
-    <div class="modal">
-        <div>
-            <button class="prev">Previous</button>
-            <button class="next">Next</button>
-            &nbsp; &nbsp;
-            <span>Page: <span class="page-num"></span> / <span class="page-count"></span></span>
-        </div>
-    </div>`);
+        <div class="modal">
+            <div class="modal-nav-container">
+                <div class="prev modal-nav"></div>
+                <div class="next modal-nav"></div>
+            </div>
+            <div>
+                <span><span class="page-num"></span> / <span class="page-count"></span></span>
+            </div>
+            <canvas></canvas>
+        </div>`);
     $modal.attr("id", id);
-    const $canvas = $('<canvas></canvas>');
-    $modal.append($canvas);
     return $modal;
 }
 
