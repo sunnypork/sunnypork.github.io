@@ -3,7 +3,7 @@ const BOOKS = [
         id: "growing-up",
         name: "Growing Up",
         preview: "../img/books/growing-up.png",
-        description: "This page is currently under construction but when it is finished it will look amazzing with all my books!!!!!!",
+        description: "This one is a english/draft version of my picture book that is soon to be published by 딸기책방 (publisher). The drawing will be completely different and the story is going to change a little bit.",
         pdf: "../pdf/growing-up.pdf",
     },
     {
