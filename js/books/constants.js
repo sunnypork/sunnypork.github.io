@@ -18,13 +18,13 @@ const BOOKS = [
         name: "Weird Zoo",
         preview: "../img/books/weird-zoo.jpeg",
         description: "I made this book by etching a big, long copper plate and printing it with intalio ink. If you want to buy one from me, I will print a fresh one out for ya.",
-        pdf: "../weirdzoo.pdf",
+        pdf: "../pdf/weirdzoo.pdf",
     },
     {
         id: "growth",
         name: "Growth",
         preview: "../img/books/growth/korean-melon.jpg",
         description: "Made this book when I was 16. My thoughts and happy thought and sad thoughts and Paul and Jaguar.",
-        pdf: "../growthzine.pdf",
+        pdf: "../pdf/growthzine.pdf",
     },
 ];
