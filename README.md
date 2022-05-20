@@ -5,7 +5,7 @@ A simple website made with simple tools
 ## Adding to Books
 
 1. Go to [`js/books/constants.js`](./js/books/constants.js)
-1. Add an entry inside the element `#entries`
+1. Add an entry inside the array `BOOKS`
 
 ## Adding to Video Art
 
