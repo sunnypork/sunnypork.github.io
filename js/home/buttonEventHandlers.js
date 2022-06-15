@@ -1,8 +1,8 @@
 const canAnimate = ($element) =>
     !$element.is(":hover") && !$element.is(':animated');
 
-const ifCanAnimate = (fn) => (id, ...args) => {
-    const $element = $(id);
+const ifCanAnimate = (fn) => (element, ...args) => {
+    const $element = typeof element === "string" ? $(element) : element;
     if (canAnimate($element)) {
         fn($element, ...args);
     }
@@ -19,8 +19,10 @@ const handleHeader = () => {
 
 const handleBooks = () => {
     // Moves along the x axis
-    const leftPosition = random(0, 96);
-    editCssWithQuery("#port-container", {
+    const $container = $("#port-container");
+    const maxLeft = getMaxButtonLeeway($container, "width");
+    const leftPosition = random(0, maxLeft);
+    editCssWithQuery($container, {
         left: `${leftPosition}px`,
     });
 };
@@ -31,8 +33,10 @@ const handleVideoArt = () => {
 
 const handleStills = () => {
     // Move along the y axis
-    const topPosition = random(0, 80);
-    editCssWithQuery("#stills-container", {
+    const $container = $("#stills-container");
+    const maxTop = getMaxButtonLeeway($container, "height");
+    const topPosition = random(0, maxTop);
+    editCssWithQuery($container, {
         top: `${topPosition}px`,
     });
 };
@@ -47,9 +51,8 @@ const wiggle = ifCanAnimate(($element) => {
     const duration = randomAnimationDuration();
     const frameDuration = Math.round(duration / positions + 1);
 
-    // Must match .button-container and .right-button-container in home.css
-    const top = "80px"; // $element.css("top");
-    const left = "40px"; // $element.css("left");
+    const top = $element.css("top");
+    const left = $element.css("left");
     const topPx = parseInt(top);
     const leftPx = parseInt(left);
     for (let i = 0; i < positions; i++) {
@@ -66,8 +69,7 @@ const wiggle = ifCanAnimate(($element) => {
 });
 
 const drip = ifCanAnimate(($element) => {
-    // should match height of .menu-button in home.css
-    const height = "144px"; // $element.css("height");
+    const height = $element.css("height");
     const heightPx = parseInt(height);
     const newHeight = heightPx + random(DRIP_MIN, DRIP_MAX);
 
@@ -114,6 +116,12 @@ const editCssWithQuery = ifCanAnimate(($element, css) => {
         duration: transition,
     }, 'ease-in-out');
 });
+
+const getMaxButtonLeeway = ($container, cssProperty) => {
+    const buttonWidth = parseInt($container.find(".menu-button").css(cssProperty));
+    const spaceWidth = parseInt($container.parent().css(cssProperty));
+    return spaceWidth - buttonWidth;
+};
 
 const handlers = [
     handleHeader,
