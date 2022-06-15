@@ -67,12 +67,15 @@ body {
     max-width: none !important;
 }
 
-.prev {
-    background-image: linear-gradient(to left, rgba(255, 0, 0, 0), rgba(0, 0, 0, 0.2));
-}
+/*DESKTOP VIEW*/
+@media (min-width: 768px) {
+    .prev {
+        background-image: linear-gradient(to left, rgba(255, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    }
 
-.next {
-    background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    .next {
+        background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    }
 }
 
 .modal-nav-container {
