@@ -6,10 +6,12 @@ function createPDFModal(book) {
                 <div class="prev modal-nav"></div>
                 <div class="next modal-nav"></div>
             </div>
-            <div>
+            <div class="page-counter">
                 <span><span class="page-num">???</span> / <span class="page-count">???</span></span>
             </div>
-            <div class="loader"></div>
+            <div class="loading-container">
+                <div class="loader center"></div>
+            </div>
             <canvas></canvas>
         </div>`);
     $modal.attr("id", id);
