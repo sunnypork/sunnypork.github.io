@@ -44,12 +44,10 @@ class PDF {
             return;
         }
         if (this.pageNum === this.pdfDoc.numPages) {
-            // add class
             $container.addClass("can-next");
         }
         this.pageNum--;
         if (this.pageNum <= 1) {
-            // remove class
             $container.removeClass("can-prev");
         }
         this.queueRenderPage(this.pageNum, $container);
@@ -60,12 +58,10 @@ class PDF {
             return;
         }
         if (this.pageNum === 1) {
-            // add class
             $container.addClass("can-prev");
         }
         this.pageNum++;
         if (this.pageNum >= this.pdfDoc.numPages) {
-            // remove class
             $container.removeClass("can-next");
         }
         this.queueRenderPage(this.pageNum, $container);
