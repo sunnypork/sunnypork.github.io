@@ -25,6 +25,6 @@ const BOOKS = [
         name: "Growth",
         preview: "../img/books/growth/korean-melon.jpg",
         description: "Made this book when I was 16. My thoughts and happy thought and sad thoughts and Paul and Jaguar.",
-        pdf: "../pdf/.pdf",
+        pdf: "../pdf/growthzine.pdf",
     },
 ];
