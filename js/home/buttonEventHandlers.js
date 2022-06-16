@@ -8,20 +8,22 @@ const ifCanAnimate = (fn) => (element, ...args) => {
     }
 };
 
+const rotateCss = (css, degrees) => ({
+    ...css,
+    'transform' : `rotate(${degrees}deg)`,
+    myRotationProperty: degrees
+});
+
 const handleHeader = () => {
     // Get a random rotation
     const degrees = random(-HEADING_ROTATION_ABS_MAX_DEGREES, HEADING_ROTATION_ABS_MAX_DEGREES);
-    editCssWithQuery("#heading", {
-        'transform' : `rotate(${degrees}deg)`,
-        myRotationProperty: degrees
-    });
+    editCssWithQuery("#heading", rotateCss({}, degrees));
 };
 
 const handleBooks = () => {
     // Moves along the x axis
     const $container = $("#port-container");
-    const maxLeft = getMaxButtonLeeway($container, "width");
-    const leftPosition = random(0, maxLeft);
+    const leftPosition = getButtonSlidePx($container, "width");
     editCssWithQuery($container, {
         left: `${leftPosition}px`,
     });
@@ -34,8 +36,7 @@ const handleVideoArt = () => {
 const handleStills = () => {
     // Move along the y axis
     const $container = $("#stills-container");
-    const maxTop = getMaxButtonLeeway($container, "height");
-    const topPosition = random(0, maxTop);
+    const topPosition = getButtonSlidePx($container, "height");
     editCssWithQuery($container, {
         top: `${topPosition}px`,
     });
@@ -51,6 +52,7 @@ const wiggle = ifCanAnimate(($element) => {
     const duration = randomAnimationDuration();
     const frameDuration = Math.round(duration / positions + 1);
 
+    const $button = $element.find(".menu-button");
     const top = $element.css("top");
     const left = $element.css("left");
     const topPx = parseInt(top);
@@ -58,14 +60,17 @@ const wiggle = ifCanAnimate(($element) => {
     for (let i = 0; i < positions; i++) {
         const leftDela = random(-maxDistance, maxDistance);
         const topDelta = random(-maxDistance, maxDistance);
+        const degrees = random(-WIGGLE_ABS_MAX_DEGREES, WIGGLE_ABS_MAX_DEGREES);
 
         const animation = {
             top: `${topPx + topDelta}px`,
             left: `${leftPx + leftDela}px`,
-        }
-        $element.animate(animation, frameDuration);
+        };
+        animate($element, animation, frameDuration);
+        animate($button, rotateCss({}, degrees), frameDuration);
     }
-    $element.animate({top, left}, frameDuration);
+    animate($element, {top, left}, frameDuration);
+    animate($button, rotateCss({}, 0), frameDuration);
 });
 
 const drip = ifCanAnimate(($element) => {
@@ -85,7 +90,8 @@ const drip = ifCanAnimate(($element) => {
 });
 
 const breathe = ifCanAnimate(($element) => {
-    const padding = `${BREATHE_ANIMATION_PADDING}px`;
+    const width = parseInt($element.css("width"));
+    const padding = `${BREATHE_ANIMATION_PADDING_FACTOR * width}px`;
     const negativePadding = `-${padding}`;
 
     const totalDuration = randomAnimationDuration();
@@ -102,6 +108,10 @@ const breathe = ifCanAnimate(($element) => {
 
 const editCssWithQuery = ifCanAnimate(($element, css) => {
     const transition = randomAnimationDuration();
+    animate($element, css, transition);
+});
+
+const animate = ($element, css, duration) => {
     $element.animate({
         ...css,
     }, {
@@ -113,14 +123,16 @@ const editCssWithQuery = ifCanAnimate(($element, css) => {
                 $(this).css('transform','rotate('+now+'deg)');
             }
         },
-        duration: transition,
+        duration,
     }, 'ease-in-out');
-});
+};
 
-const getMaxButtonLeeway = ($container, cssProperty) => {
+const getButtonSlidePx = ($container, cssProperty) => {
     const buttonWidth = parseInt($container.find(".menu-button").css(cssProperty));
     const spaceWidth = parseInt($container.parent().css(cssProperty));
-    return spaceWidth - buttonWidth;
+    const halfButtonWidth = buttonWidth * 0.5;
+    const max = spaceWidth - halfButtonWidth;
+    return random(-halfButtonWidth, max);
 };
 
 const handlers = [
