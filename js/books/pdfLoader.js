@@ -21,6 +21,9 @@ class PDF {
         pdfjsLib.getDocument(url).promise.then((pdfDoc) => {
             this.pdfDoc = pdfDoc;
             $container.find(".page-count").text(pdfDoc.numPages);
+            if (pdfDoc.numPages > 1) {
+                $container.addClass("can-next");
+            }
             this.queueRenderPage(this.pageNum, $container);
             $(window).resize(() => this.queueRenderPage(this.pageNum, $container))
         });
@@ -39,7 +42,15 @@ class PDF {
         if (this.pageNum <= 1) {
             return;
         }
+        if (this.pageNum === this.pdfDoc.numPages) {
+            // add class
+            $container.addClass("can-next");
+        }
         this.pageNum--;
+        if (this.pageNum <= 1) {
+            // remove class
+            $container.removeClass("can-prev");
+        }
         this.queueRenderPage(this.pageNum, $container);
     };
 
@@ -47,7 +58,15 @@ class PDF {
         if (this.pageNum >= this.pdfDoc.numPages) {
             return;
         }
+        if (this.pageNum === 1) {
+            // add class
+            $container.addClass("can-prev");
+        }
         this.pageNum++;
+        if (this.pageNum >= this.pdfDoc.numPages) {
+            // remove class
+            $container.removeClass("can-next");
+        }
         this.queueRenderPage(this.pageNum, $container);
     };
 

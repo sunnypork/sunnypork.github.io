@@ -69,12 +69,22 @@ body {
 
 /*DESKTOP VIEW*/
 @media (min-width: 768px) {
-    .prev {
+    .can-prev .prev {
         background-image: linear-gradient(to left, rgba(255, 0, 0, 0), rgba(0, 0, 0, 0.2));
     }
 
-    .next {
+    .can-next .next {
         background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    }
+
+    .can-prev .prev.modal-nav:hover {
+        cursor: pointer;
+        opacity: 1;
+    }
+
+    .can-next .next.modal-nav:hover {
+        cursor: pointer;
+        opacity: 1;
     }
 }
 
@@ -90,9 +100,4 @@ body {
 .modal-nav {
     width: 50%;
     opacity: 0;
-}
-
-.modal-nav:hover {
-    cursor: pointer;
-    opacity: 1;
 }
