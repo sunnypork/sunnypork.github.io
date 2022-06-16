@@ -47,12 +47,14 @@ const handleAboutMe = () => {
 };
 
 const wiggle = ifCanAnimate(($element) => {
-    const maxDistance = WIGGLE_DISTANCE;
+    const $button = $element.find(".menu-button");
+
+    const width = parseInt($button.css("width"));
+    const maxDistance = WIGGLE_DISTANCE_BUTTON_FACTOR * width;
     const positions = random(WIGGLE_MIN_POSITIONS, WIGGLE_MAX_POSITIONS);
     const duration = randomAnimationDuration();
     const frameDuration = Math.round(duration / positions + 1);
 
-    const $button = $element.find(".menu-button");
     const top = $element.css("top");
     const left = $element.css("left");
     const topPx = parseInt(top);
@@ -130,7 +132,7 @@ const animate = ($element, css, duration) => {
 const getButtonSlidePx = ($container, cssProperty) => {
     const buttonWidth = parseInt($container.find(".menu-button").css(cssProperty));
     const spaceWidth = parseInt($container.parent().css(cssProperty));
-    const halfButtonWidth = buttonWidth * 0.5;
+    const halfButtonWidth = buttonWidth * SLIDE_BUTTON_WIDTH_ESCAPE;
     const max = spaceWidth - halfButtonWidth;
     return random(-halfButtonWidth, max);
 };
