@@ -24,6 +24,7 @@ class PDF {
             if (pdfDoc.numPages > 1) {
                 $container.addClass("can-next");
             }
+            $container.removeClass("loading");
             this.queueRenderPage(this.pageNum, $container);
             $(window).resize(() => this.queueRenderPage(this.pageNum, $container))
         });
