@@ -44,7 +44,7 @@ const atBottomOfPage = () => {
     const scrollHeight = $(document).height();
     const scrollPosition = $window.height() + $window.scrollTop();
     return (scrollHeight - scrollPosition) / scrollHeight < 0.05;
-}
+};
 
 const fillPage = () => {
     Promise.all(insertRandomImages()).then(() => {
@@ -56,11 +56,14 @@ const fillPage = () => {
 
 const initInfiniteScroll = () => {
     const $window = $(window);
-    $window.on("scroll", function() {
+    const insertIfAtEnd = () => {
         if (atBottomOfPage()) {
+            $window.off("scroll", insertIfAtEnd);
             insertRandomImages();
+            $window.on("scroll", insertIfAtEnd);
         }
-    });
+    };
+    $window.on("scroll", insertIfAtEnd);
 }
 
 const init = () => {
