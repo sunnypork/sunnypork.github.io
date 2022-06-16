@@ -1,8 +1,8 @@
 function createPDFModal(book) {
     const {id} = book;
     const $modal = $(`
-        <div class="modal">
-            <div class="modal-nav-container loading">
+        <div class="modal loading">
+            <div class="modal-nav-container">
                 <div class="prev modal-nav"></div>
                 <div class="next modal-nav"></div>
             </div>
