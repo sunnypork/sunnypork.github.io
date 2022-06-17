@@ -1,3 +1,4 @@
+// How long to wait before flipping the "me" icon
 const FLIP_INTERVAL_MILLISECONDS = 1500;
 
 let flipped = false;

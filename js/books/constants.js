@@ -1,3 +1,4 @@
+// Note: the id field should not contain spaces
 const BOOKS = [
     {
         id: "growing-up",

@@ -7,7 +7,7 @@ const onButtonClick = (event) => {
     clearTimeout(buttonEventsTimeout);
 
     const $target = $(event.target);
-    const delay = ON_CLICK_DELAY_SECONDS * 1000;
+    const delay = ON_CLICK_ANIMATION_SECONDS * 1000;
     const transition = `${delay}ms ease-in-out`;
 
     const $window = $(window);

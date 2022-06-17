@@ -93,7 +93,7 @@ const drip = ifCanAnimate(($element) => {
 
 const breathe = ifCanAnimate(($element) => {
     const width = parseInt($element.css("width"));
-    const padding = `${BREATHE_ANIMATION_PADDING_FACTOR * width}px`;
+    const padding = `${BREATHE_ANIMATION_PADDING_TO_WIDTH * width}px`;
     const negativePadding = `-${padding}`;
 
     const totalDuration = randomAnimationDuration();
