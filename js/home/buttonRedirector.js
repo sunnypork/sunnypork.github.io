@@ -8,7 +8,7 @@ const onButtonClick = (event) => {
 
     const $target = $(event.target);
     const delay = ON_CLICK_ANIMATION_SECONDS * 1000;
-    const transition = `${delay}ms ease-in-out`;
+    const transition = `${delay}ms ease-in`;
 
     const $window = $(window);
     const $parent = $target.parent();
@@ -24,13 +24,14 @@ const onButtonClick = (event) => {
         zIndex: 999
     });
     $target.css({
-        width: $window.width() * 2,
-        height: $window.height() * 2,
+        width: $window.width(),
+        height: $window.height(),
+        "border-radius": 0,
         transition,
     });
     $parent.css({
-        top: - grandparentPos.top - ($window.height() / 2),
-        left: - grandparentPos.left - ($window.width() / 2),
+        top: - grandparentPos.top + $window.scrollTop(),
+        left: - grandparentPos.left + $window.scrollLeft(),
         transition,
     });
     $a.fadeOut("fast");
