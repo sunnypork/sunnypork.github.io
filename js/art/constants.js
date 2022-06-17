@@ -21,7 +21,7 @@ const WIDTH_OVERFLOW_FACTOR = 2;
 
 // To add a youtube video, you can just leave a link
 // If you would like a different thumbnail, insert it as
-// {video: "link", preview: "link-to-thumbnail"}
+// {link: "link-to-youtube", preview: "link-to-thumbnail"}
 const VIDEOS = [
     "https://www.youtube.com/watch?v=sAdfuqRl3ZA",
     "https://www.youtube.com/watch?v=1kV9KwPlYgc",
@@ -29,11 +29,11 @@ const VIDEOS = [
     "https://www.youtube.com/watch?v=QTDgQN1yC1I",
     "https://www.youtube.com/watch?v=wM_9v42Vc-Y",
     {
-        video: "https://www.youtube.com/watch?v=IOPt4T5VPYM",
+        link: "https://www.youtube.com/watch?v=IOPt4T5VPYM",
         preview: "https://img.youtube.com/vi/IOPt4T5VPYM/mqdefault.jpg",
     },
     {
-        video: "https://www.youtube.com/watch?v=JC8TwhX_Ea0",
+        link: "https://www.youtube.com/watch?v=JC8TwhX_Ea0",
         preview: "https://img.youtube.com/vi/JC8TwhX_Ea0/mqdefault.jpg",
     },
 ];

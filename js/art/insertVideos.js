@@ -22,38 +22,58 @@ const createPreview = (id, preview) => {
     return $img;
 };
 
+const createShadow = ({height, width}, position) => {
+    const $shadow = $('<div class="shadow"></div>');
+    $shadow.css({
+        top: `${position.top}px`,
+        left: `${position.left}px`,
+        height, width
+    });
+    return $shadow;
+};
+
+const calculateSize = () => {
+    const videoSizeFactor = randomFloat(VIDEO_MIN_SIZE_FACTOR, VIDEO_MAX_SIZE_FACTOR);
+    let dynamicSizeFactor = 1;
+    while (BASE_WIDTH * videoSizeFactor * dynamicSizeFactor > $(window).width()) {
+        dynamicSizeFactor = dynamicSizeFactor / WIDTH_OVERFLOW_FACTOR;
+    }
+    const width = Math.round(BASE_WIDTH * videoSizeFactor * dynamicSizeFactor);
+    const height = Math.round(BASE_HEIGHT * videoSizeFactor * dynamicSizeFactor);
+    return {width, height};
+};
+
+const getVideoPosition = ({height, width}) => {
+    const left = random(X_AXIS_MARGIN, $(window).width() - width - X_AXIS_MARGIN);
+    const top = bottom + random(NEXT_VIDEO_MIN_DELTA, NEXT_VIDEO_MAX_DELTA);
+    bottom = top + height;
+    return {top, left};
+};
+
 const insertVideo = (video) => {
     return new Promise((resolve) => {
-        const videoSizeFactor = randomFloat(VIDEO_MIN_SIZE_FACTOR, VIDEO_MAX_SIZE_FACTOR);
-        let dynamicSizeFactor = 1;
-        while (BASE_WIDTH * videoSizeFactor * dynamicSizeFactor > $(window).width()) {
-            dynamicSizeFactor = dynamicSizeFactor / WIDTH_OVERFLOW_FACTOR;
-        }
-        const width = Math.round(BASE_WIDTH * videoSizeFactor * dynamicSizeFactor);
-        const height = Math.round(BASE_HEIGHT * videoSizeFactor * dynamicSizeFactor);
+        const {width, height} = calculateSize();
+        const {link, preview} = typeof video === "string" ? {link: video} : video;
         const title = "A Video";
-        const link = video.video ? video.video : video;
         const id = getVideoId(link);
         const $iframe = createVideoIframe({id, title, width, height});
-        const {preview} = video; // Might have preview link already
         const $preview = createPreview(id, preview);
-        $("body").append($iframe, $preview);
+        const position = getVideoPosition({height, width});
+        const $shadow = createShadow({height, width}, position);
+        $("body").append($iframe, $preview, $shadow);
+        $shadow.fadeIn("slow");
         $iframe.one("load", () => {
-            resolve(onVideoLoad($iframe, $preview, height, width));
+            resolve(onVideoLoad($iframe, $preview, {height, width}, position));
         });
     });
 };
 
-const onVideoLoad = ($iframe, $preview, heightPx, widthPx) => {
+const onVideoLoad = ($iframe, $preview, size, position) => {
     return new Promise((resolve) => {
-        const leftPx = random(X_AXIS_MARGIN, $(window).width() - widthPx - X_AXIS_MARGIN);
-        const topPx = bottom + random(NEXT_VIDEO_MIN_DELTA, NEXT_VIDEO_MAX_DELTA);
-        bottom = topPx + heightPx;
-
-        const top = `${topPx}px`;
-        const left = `${leftPx}px`;
-        const height = `${heightPx}px`;
-        const width = `${widthPx}px`;
+        const top = `${position.top}px`;
+        const left = `${position.left}px`;
+        const height = `${size.height}px`;
+        const width = `${size.width}px`;
 
         $iframe.css({
             left,
@@ -64,7 +84,6 @@ const onVideoLoad = ($iframe, $preview, heightPx, widthPx) => {
             top,
             height,
             width,
-            zIndex: 999,
         });
         $preview.fadeIn("slow");
         resolve();
