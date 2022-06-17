@@ -13,9 +13,11 @@ const onButtonClick = (event) => {
     const $window = $(window);
     const $parent = $target.parent();
     const $a = $target.find("a");
+    const $body = $("body");
 
     $target.stop(true);
     $parent.stop(true);
+    $body.css({overflow: "hidden"});
 
     const grandparentPos = $parent.parent().position();
     $parent.css({
