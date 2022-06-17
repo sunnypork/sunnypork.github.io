@@ -23,6 +23,7 @@ const onButtonClick = (event) => {
     $parent.css({
         zIndex: 999
     });
+    animate($target, rotateCss({}, 0), transition / 2); // ensure we're not rotated
     $target.css({
         width: $window.width(),
         height: $window.height(),
