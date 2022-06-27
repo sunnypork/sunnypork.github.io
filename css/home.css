@@ -85,9 +85,34 @@ body {
 }
 
 #footnote {
+    z-index: 4;
     position: fixed;
     left: 8px;
     bottom: 0;
+}
+
+#game {
+    z-index: 5;
+    display: none;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    transition: 500ms;
+
+    /*FOR DEBUGGING*/
+    /*border-style: dotted;*/
+}
+
+#game > a {
+    position: relative;
+    top: 25%;
+    left: 25%;
+}
+
+#game > a > img {
+    width: 50px;
+    height: 50px;
+    border-radius: 6px;
 }
 
 /*DESKTOP VIEW*/

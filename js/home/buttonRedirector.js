@@ -56,7 +56,7 @@ const resetPage = (event) => {
 };
 
 const initRedirector = () => {
-    $("a").on('click', onLinkClick);
+    $(".button-link").on('click', onLinkClick);
     $(".menu-button").on('click', onButtonClick);
     window.addEventListener("pageshow", resetPage);
 };
