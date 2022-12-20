@@ -19,12 +19,27 @@ const getRandomPropertyValue = ($game, $window, measure, property) => () => {
 };
 
 const shouldPlay = ($window) => {
+    return true; // TODO remove
     const width = $window.width();
     if ($window.height() < width && width >= MIN_WIDTH_TO_PLAY) {
         return random(0, CHANCE_TO_PLAY_ONE_OF) === 0;
     }
     return false;
 
+};
+
+const win = ($game, $window) => (event) => {
+    event.preventDefault();
+    $game.off("mouseenter");
+    $game.off("click");
+    $game.css({
+        backgroundColor: "red",
+        top: 0,
+        left: 0,
+        width: $window.width(),
+        height: $window.height(),
+        "border-radius": 0,
+    });
 };
 
 $(() => {
@@ -34,6 +49,7 @@ $(() => {
         $game.show();
         const onMouseEnter = moveMe($game, $window);
         $game.on("mouseenter", onMouseEnter);
+        $game.on("click", win($game, $window));
         onMouseEnter();
     }
 });
