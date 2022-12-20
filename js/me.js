@@ -32,7 +32,6 @@ const incHappiness = () => {
 const decHappiness = () => {
     if (happiness > 0) {
         happiness = happiness - 1;
-        console.log(happiness);
     }
 };
 
