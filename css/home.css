@@ -103,10 +103,16 @@ body {
     /*border-style: dotted;*/
 }
 
+.anchor {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
 #game.win {
     background-color: var(--game);
     opacity: 0.98;
-    cursor: pointer;
     border-radius: 25px;
 }
 
@@ -120,6 +126,7 @@ body {
 }
 
 #game > a > img {
+    position: relative;
     border-radius: 6px;
     transition: 500ms;
 }
@@ -132,6 +139,69 @@ body {
 #game.win > a > img {
     width: 0;
     height: 0;
+}
+
+@keyframes bounce {
+    from {
+        transform: translate(-50%, -5%);
+    }
+    50% {
+        transform: translate(-50%, 5%);
+    }
+    to {
+        transform: translate(-50%, -5%);
+    }
+}
+
+.tooltip {
+    display: none;
+    pointer-events: none;
+    min-width: 100px;
+    max-width: 200px;
+    color: green;
+    text-align: center;
+    padding: 5px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    white-space: normal;
+
+    animation: bounce infinite 1s linear;
+
+    left: 50%;
+    background-color: var(--game);
+}
+
+.tooltip.tt-top {
+    bottom: 88%;
+}
+
+.tooltip.tt-top::after {
+    border-color: var(--game) transparent transparent transparent;
+    top: 100%;
+}
+
+.tooltip.tt-bottom {
+    top: 88%;
+}
+
+.tooltip.tt-bottom::after {
+    border-color: transparent transparent var(--game) transparent;
+    bottom: 100%;
+}
+
+.tooltip::after {
+    content: " ";
+    position: absolute;
+    border-width: 5px;
+    border-style: solid;
+    left: 50%;
+    margin-left: -5px;
+}
+
+.tooltip > span {
+    position: relative;
+    overflow-wrap: break-word;
 }
 
 #win-screen {

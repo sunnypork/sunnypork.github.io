@@ -38,19 +38,48 @@ const win = ($game, $window) => (event) => {
         width: windowWidth - (2 * widthPadding),
         height: windowHeight - (2 * heightPadding),
     });
-    $game.find("#meemu").fadeOut();
+    $game.find("#meemu").fadeOut("fast");
     $game.find("a").on("click", (event) => event.stopPropagation());
     setTimeout(
         () => $game.find("#win-screen").fadeIn(),
         250
     );
     setTimeout(
-        () => $window.one(
-            "click",
-            () => $game.css({opacity: 0, "pointer-events": "none"})
-        ),
+        () => {
+            $game.css({cursor: "pointer"});
+            $window.one(
+                "click",
+                () => $game.css({
+                    cursor: undefined,
+                    opacity: 0, "pointer-events": "none"
+                })
+            )
+        },
         1000
     );
+};
+
+const tooltipHeightClass = ($game, $window) => {
+    const top = parseInt($game.css("top"), 10);
+    const centerHeight = top + $game.height() / 2;
+    const isOnTop = centerHeight < $window.height() / 3;
+    return isOnTop ? "tt-bottom" : "tt-top";
+};
+
+const showCatchMe = ($game, $window) => {
+    const $tooltip = $game.find(".tooltip");
+    $tooltip.addClass(tooltipHeightClass($game, $window));
+    const show = () => {
+        $game.off("mouseenter", cancelShow);
+        $game.one("mouseenter", () => $tooltip.fadeOut());
+        $tooltip.fadeIn();
+    };
+    const cancelShow = () => {
+        clearTimeout(showTimeout);
+    };
+
+    const showTimeout = setTimeout(show, 1500);
+    $game.one("mouseenter", cancelShow);
 };
 
 $(() => {
@@ -62,5 +91,6 @@ $(() => {
         $game.on("mouseenter", onMouseEnter);
         $game.on("click", win($game, $window));
         onMouseEnter();
+        showCatchMe($game, $window);
     }
 });
