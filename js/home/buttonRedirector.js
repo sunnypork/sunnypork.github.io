@@ -43,7 +43,7 @@ const onButtonClick = (event) => {
 };
 
 // This probably isn't the **correct** way to do this
-const onLinkClick = (event) => {
+const onButtonLinkClick = (event) => {
     event.stopPropagation();
     event.target = $(event.target).parent();
     onButtonClick(event);
@@ -56,7 +56,7 @@ const resetPage = (event) => {
 };
 
 const initRedirector = () => {
-    $(".button-link").on('click', onLinkClick);
+    $(".button-link").on('click', onButtonLinkClick);
     $(".menu-button").on('click', onButtonClick);
     window.addEventListener("pageshow", resetPage);
 };

@@ -19,13 +19,8 @@ const getRandomPropertyValue = ($game, $window, measure, property) => () => {
 };
 
 const shouldPlay = ($window) => {
-    return true; // TODO remove
     const width = $window.width();
-    if ($window.height() < width && width >= MIN_WIDTH_TO_PLAY) {
-        return random(0, CHANCE_TO_PLAY_ONE_OF) === 0;
-    }
-    return false;
-
+    return $window.height() < width && width >= MIN_WIDTH_TO_PLAY && random(0, CHANCE_TO_PLAY_ONE_OF) === 0;
 };
 
 const win = ($game, $window) => (event) => {
@@ -44,6 +39,11 @@ const win = ($game, $window) => (event) => {
         height: windowHeight - (2 * heightPadding),
     });
     $game.find("#meemu").fadeOut();
+    $game.find("a").on("click", (event) => event.stopPropagation());
+    setTimeout(
+        () => $game.find("#win-screen").fadeIn(),
+        250
+    );
     setTimeout(
         () => $window.one(
             "click",
@@ -59,7 +59,7 @@ $(() => {
         const $game = $("#game");
         $game.show();
         const onMouseEnter = moveMe($game, $window);
-        // $game.on("mouseenter", onMouseEnter); // TODO
+        $game.on("mouseenter", onMouseEnter);
         $game.on("click", win($game, $window));
         onMouseEnter();
     }
