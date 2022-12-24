@@ -32,14 +32,25 @@ const win = ($game, $window) => (event) => {
     event.preventDefault();
     $game.off("mouseenter");
     $game.off("click");
+    const windowWidth = $window.width();
+    const windowHeight = $window.height();
+    const widthPadding = windowWidth * 0.05;
+    const heightPadding = windowHeight * 0.05;
+    $game.addClass("win");
     $game.css({
-        backgroundColor: "red",
-        top: 0,
-        left: 0,
-        width: $window.width(),
-        height: $window.height(),
-        "border-radius": 0,
+        top: $window.scrollTop() + heightPadding,
+        left: $window.scrollLeft() + widthPadding,
+        width: windowWidth - (2 * widthPadding),
+        height: windowHeight - (2 * heightPadding),
     });
+    $game.find("#meemu").fadeOut();
+    setTimeout(
+        () => $window.one(
+            "click",
+            () => $game.css({opacity: 0, "pointer-events": "none"})
+        ),
+        1000
+    );
 };
 
 $(() => {
@@ -48,7 +59,7 @@ $(() => {
         const $game = $("#game");
         $game.show();
         const onMouseEnter = moveMe($game, $window);
-        $game.on("mouseenter", onMouseEnter);
+        // $game.on("mouseenter", onMouseEnter); // TODO
         $game.on("click", win($game, $window));
         onMouseEnter();
     }

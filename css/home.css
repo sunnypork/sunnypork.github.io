@@ -103,6 +103,13 @@ body {
     /*border-style: dotted;*/
 }
 
+#game.win {
+    background-color: var(--game);
+    opacity: 0.9;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
 #game > a {
     position: relative;
     top: 25%;
