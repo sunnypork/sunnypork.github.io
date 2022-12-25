@@ -5,7 +5,7 @@ const NEXT_IMAGE_MAX_DELTA = 200;
 
 // How many pixels there will be between the sides of the image and the edge
 // of the window at a minimum when a new image is inserted
-const X_AXIS_MARGIN = -100;
+const X_AXIS_MARGIN = 0;
 
 // If an image's size is selected as too large, this number is how much
 // to divide that size by to try again
