@@ -85,9 +85,134 @@ body {
 }
 
 #footnote {
+    z-index: 4;
     position: fixed;
     left: 8px;
     bottom: 0;
+}
+
+#game {
+    z-index: 5;
+    display: none;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    transition: 500ms;
+
+    /*FOR DEBUGGING*/
+    /*border-style: dotted;*/
+}
+
+.anchor {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+#game.win {
+    background-color: var(--game);
+    opacity: 0.98;
+    border-radius: 25px;
+}
+
+#game > a {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+}
+
+#game > a > img {
+    position: relative;
+    border-radius: 6px;
+    transition: 500ms;
+}
+
+#game:not(.win) > a > img {
+    width: 100%;
+    height: 100%;
+}
+
+#game.win > a > img {
+    width: 0;
+    height: 0;
+}
+
+@keyframes bounce {
+    from {
+        transform: translate(-50%, -5%);
+    }
+    50% {
+        transform: translate(-50%, 5%);
+    }
+    to {
+        transform: translate(-50%, -5%);
+    }
+}
+
+.tooltip {
+    display: none;
+    pointer-events: none;
+    min-width: 100px;
+    max-width: 200px;
+    color: green;
+    text-align: center;
+    padding: 5px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    white-space: normal;
+
+    animation: bounce infinite 1s linear;
+
+    left: 50%;
+    background-color: var(--game);
+}
+
+.tooltip.tt-top {
+    bottom: 88%;
+}
+
+.tooltip.tt-top::after {
+    border-color: var(--game) transparent transparent transparent;
+    top: 100%;
+}
+
+.tooltip.tt-bottom {
+    top: 88%;
+}
+
+.tooltip.tt-bottom::after {
+    border-color: transparent transparent var(--game) transparent;
+    bottom: 100%;
+}
+
+.tooltip::after {
+    content: " ";
+    position: absolute;
+    border-width: 5px;
+    border-style: solid;
+    left: 50%;
+    margin-left: -5px;
+}
+
+.tooltip > span {
+    position: relative;
+    overflow-wrap: break-word;
+}
+
+#win-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    vertical-align: middle;
+    display: none;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
 }
 
 /*DESKTOP VIEW*/
