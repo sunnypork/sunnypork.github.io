@@ -1,9 +1,9 @@
 // Note: the id field should not contain spaces
 const BOOKS = [
      {
-        id: "어른이 되는 길,
+        id: "어른이 되는 길",
         name: "어른이 되는 길",
-        preview: "../img/books/growing-up.png",
+        preview: "../img/books/어른이 되는길 표지.jpeg",
         description: "This book was published in Oct 2022 in Korea. Buy the book in one of these online bookstores: https://search.shopping.naver.com/book/catalog/35068072634?cat_id=50010842&frm=PBOKPRO&query=%EC%96%B4%EB%A5%B8%EC%9D%B4+%EB%90%98%EB%8A%94+%EA%B8%B8&NaPm=ct%3Dlc15dzmg%7Cci%3Dd77e551d379083c3c8e9ef236a06f4cbc80d414b%7Ctr%3Dboknx%7Csn%3D95694%7Chk%3Dc68694ed56c5cf0a61ac9fda004247cbd3f1f50b",
         pdf: "../pdf/growing-up.pdf",
     },
