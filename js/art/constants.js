@@ -28,7 +28,7 @@ const VIDEOS = [
     "https://www.youtube.com/watch?v=eNf_Kc6EyvA",
     "https://www.youtube.com/watch?v=QTDgQN1yC1I",
     "https://www.youtube.com/watch?v=wM_9v42Vc-Y",
-    "https://www.youtube.com/watch?v=zX3Krhwt08U,
+    "https://www.youtube.com/watch?v=zX3Krhwt08U",
     {
         link: "https://www.youtube.com/watch?v=IOPt4T5VPYM",
         preview: "https://img.youtube.com/vi/IOPt4T5VPYM/mqdefault.jpg",
