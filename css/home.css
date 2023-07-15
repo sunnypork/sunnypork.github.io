@@ -91,6 +91,10 @@ body {
     bottom: 0;
 }
 
+#footnote a, #footnote a:visited, #footnote a:hover {
+    color: darkcyan;
+}
+
 #game {
     z-index: 5;
     display: none;
