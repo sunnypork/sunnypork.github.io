@@ -4,10 +4,10 @@ const BUTTON_LOOP_MIN_SECONDS = 0;
 const BUTTON_LOOP_MAX_SECONDS = 0.5;
 
 // How long to wait before changing the title of the webpage the first time
-const TITLE_LOOP_DELAY_SECONDS = 1.5;
+const TITLE_LOOP_DELAY_SECONDS = 2;
 // How long to wait before changing the title of the webpage again at a min/max
-const TITLE_LOOP_MIN_SECONDS = 0;
-const TITLE_LOOP_MAX_SECONDS = 0;
+const TITLE_LOOP_MIN_SECONDS = 2;
+const TITLE_LOOP_MAX_SECONDS = 2;
 
 // The length of the animation where the button covers the whole screen
 const ON_CLICK_ANIMATION_SECONDS = 0.5;
