@@ -47,12 +47,17 @@ const evalCode = ($parent) => {
 	evalStyle($code);
 };
 
-const evalScripts = ($code) =>
+const _document = document;
+
+const evalScripts = ($code) => {
+	const document = $code?.[0]?.ownerDocument ?? _document;
 	$code
 		.filter((_, element) => element.classList.contains("language-eval"))
 		.each((_, element) => eval(element.textContent));
+};
 
-const evalStyle = ($code) =>
+const evalStyle = ($code) => {
+	const document = $code?.[0]?.ownerDocument ?? _document;
 	$code
 		.filter((_, element) => element.classList.contains("language-style"))
 		.each((_, element) => {
@@ -60,6 +65,7 @@ const evalStyle = ($code) =>
 			style.innerHTML = element.textContent;
 			document.head.appendChild(style);
 		});
+};
 
 const isAbsolutePath = (href) => href.startsWith("/") || /^[^\/]*:\/\//.test(href);
 
