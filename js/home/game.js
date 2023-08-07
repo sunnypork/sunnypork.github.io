@@ -1,15 +1,26 @@
 // Moves game piece to random place on the screen
 const moveMe = ($game, $window) => {
-    const getRandomLeft = getRandomPropertyValue($game, $window, "width", "left");
-    const getRandomTop = getRandomPropertyValue($game, $window, "height", "top");
-    return () => {
-        const left = getRandomLeft();
-        const top = getRandomTop();
+    if (!$game.hasClass("win")) {
+        const left = getRandomPropertyValue($game, $window, "width", "left");
+        const top = getRandomPropertyValue($game, $window, "height", "top");
         $game.css({left, top});
-    };
+    }
 };
 
-const getRandomPropertyValue = ($game, $window, measure, property) => () => {
+const runAway = ($game, $window) => {
+    if (!$game.hasClass("win")) {
+        const left = random(0, 2) === 0 ? -$game.width() : $window.width();
+        const top = random(0, 2) === 0 ? -$game.height() : $window.height();
+        $game.css({left, top});
+    }
+};
+
+const hesitate = () => {
+    const ms = random(0, HESITATION_MAX_MS);
+    return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
+const getRandomPropertyValue = ($game, $window, measure, property) => {
     const oldProperty = parseInt($game.css(property) || "0");
     const windowSize = $window[measure]();
     const gameSize = $game[measure]();
@@ -82,15 +93,24 @@ const showCatchMe = ($game, $window) => {
     $game.one("mouseenter", cancelShow);
 };
 
-$(() => {
+$(async () => {
     const $window = $(window);
     if (shouldPlay($window)) {
+        let catchAttempts = random(CATCH_ATTEMPTS_MIN, CATCH_ATTEMPTS_MAX);
         const $game = $("#game");
-        $game.show();
-        const onMouseEnter = moveMe($game, $window);
+        const $meemu = $("#meemu");
+        const onMouseEnter = () => {
+            catchAttempts = catchAttempts - 1;
+            if (catchAttempts > 0) {
+                hesitate().then(() => moveMe($game, $window));
+            } else {
+                runAway($game, $window);
+            }
+        };
         $game.on("mouseenter", onMouseEnter);
-        $game.on("click", win($game, $window));
-        onMouseEnter();
+        $meemu.on("mousedown", win($game, $window));
+        moveMe($game, $window);
+        $game.show();
         showCatchMe($game, $window);
     }
 });
