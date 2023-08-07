@@ -1,6 +1,6 @@
 const md = window.markdownit({html: true}).use(window.markdownitFootnote);
 
-const ROOT = "https://raw.githubusercontent.com/sunnypork/sunnypork.github.io/main";
+const ROOT = "https://raw.githubusercontent.com/sunnypork/sunnypork.github.io/master";
 // const ROOT = "http://localhost:63342/sunnypork.github.io";
 
 const getPath = (suffix) => `${ROOT}/${suffix}`;
@@ -95,6 +95,8 @@ const insertRender = ($element, enclosingFolder, render) =>
 		.then(evalCode)
 		.then(() => $element?.[0]?.dispatchEvent(new Event("render")));
 
-const renderMarkdown = ($element, file) =>
-	getPage(file)
-		.then((render) => insertRender($element, folder(file), render));
+const renderMarkdown = ($element, file) => {
+	const href = resolveHref(folder(window.location.pathname), file);
+	return getPage(href)
+		.then((render) => insertRender($element, folder(href), render));
+};

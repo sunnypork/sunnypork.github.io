@@ -172,9 +172,9 @@ You probably won't need any of these features
 
 # Inlining Pages
 
-If you link to another markdown page, but put \`#inline\` in the square brackets, that page will be _inlined_, and just part of the current page. For example, here is the header (from the top right of the website) in this page:
+If you link to another markdown page, but put \`#inline\` in the square brackets, that page will be _inlined_, and just part of the current page. For example, here is the README (from GitHub page) in this page:
 
-[#inline](./header.md)
+[#inline](../README.md)
 
 # HTML
 
