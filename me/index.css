@@ -51,12 +51,12 @@ a:active {
 
 #instagram {
     width: 25px;
-    background-image: url("../img/instagram.png");
+    background-image: url("./img/instagram.png");
 }
 
 #youtube {
     width: 30px;
-    background-image: url("../img/youtube.png");
+    background-image: url("./img/youtube.png");
 }
 
 .panel {

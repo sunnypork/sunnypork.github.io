@@ -28,7 +28,7 @@ editor.setShowInvisibles(true);
 editor.getSession().on('change', loadRender);
 
 const refresh = () =>
-	fetch(`/${page}.md`)
+	fetch(`/${page}/index.md`)
 		.then((response) => response.text())
 		.then((text) => editor.setValue(text, -1));
 
@@ -39,4 +39,4 @@ document.getElementById("copy").addEventListener("click", () =>
 document.getElementById("beginner").addEventListener("click", () => editor.setValue(BEGINNER, -1));
 document.getElementById("intermediate").addEventListener("click", () => editor.setValue(INTERMEDIATE, -1));
 document.getElementById("advanced").addEventListener("click", () => editor.setValue(ADVANCED, -1));
-document.getElementById("change").addEventListener("click", () => window.open(`https://github.com/sunnypork/sunnypork.github.io/edit/master/${page}.md`));
+document.getElementById("change").addEventListener("click", () => window.open(`https://github.com/sunnypork/sunnypork.github.io/edit/master/${page}/index.md`));
