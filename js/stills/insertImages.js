@@ -1,4 +1,5 @@
 let bottom = 0;
+let locked = false;
 
 const insertImage = (src) => {
     return new Promise((resolve) => {
@@ -34,9 +35,15 @@ const insertImages = (images) => {
     return images.map(insertImage);
 };
 
-const insertRandomImages = () => {
-    const images = shuffleArray(IMAGES);
-    return insertImages(images);
+const insertRandomImages = async () => {
+    if (locked) {
+        return new Promise((resolve) => setTimeout(resolve)).then(insertRandomImages);
+    } else {
+        locked = true;
+        const images = shuffleArray(IMAGES);
+        await Promise.all(insertImages(images));
+        locked = false;
+    }
 };
 
 const atBottomOfPage = () => {
@@ -47,7 +54,7 @@ const atBottomOfPage = () => {
 };
 
 const fillPage = () => {
-    Promise.all(insertRandomImages()).then(() => {
+    insertRandomImages().then(() => {
         if (atBottomOfPage()) {
             fillPage();
         }
@@ -56,19 +63,16 @@ const fillPage = () => {
 
 const initInfiniteScroll = () => {
     const $window = $(window);
-    const insertIfAtEnd = () => {
+    const insertIfAtEnd = async () => {
         if (atBottomOfPage()) {
             $window.off("scroll", insertIfAtEnd);
-            insertRandomImages();
+            await insertRandomImages();
             $window.on("scroll", insertIfAtEnd);
+            await insertIfAtEnd();
         }
     };
     $window.on("scroll", insertIfAtEnd);
+    return insertIfAtEnd()
 }
 
-const init = () => {
-    fillPage();
-    initInfiniteScroll();
-};
-
-$(init);
+$(initInfiniteScroll);
