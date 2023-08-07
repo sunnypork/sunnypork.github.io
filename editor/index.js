@@ -1,4 +1,5 @@
 const page = window.location.hash.length > 1 ? window.location.hash.replace("#", "") : "me";
+history.replaceState({page}, "Redirecting", `/editor/${page}`);
 const getSavedValue = () => localStorage.getItem(page) || '';
 const setSavedValue = (value) => localStorage.setItem(page, value);
 

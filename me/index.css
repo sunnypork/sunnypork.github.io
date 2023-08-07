@@ -1,4 +1,4 @@
-@import "../css/global.css";
+@import "../index.css";
 
 body {
     background-color: var(--me);

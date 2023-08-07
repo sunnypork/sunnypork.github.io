@@ -1,4 +1,4 @@
-@import "global.css";
+@import "../index.css";
 
 body {
     background-image: linear-gradient(#fffef7, #fffef7); /* PLACEHOLDER (colours do not matter here) */
