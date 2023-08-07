@@ -12,8 +12,8 @@
 </main>
 </body>
 <script>
-	if (window.location.pathname.includes("/editor/")) {
-		const path = window.location.pathname.split("/editor/").slice(1).join("/editor/");
+	if (window.location.pathname.endsWith("/editor")) {
+		const path = window.location.pathname.replace(/\/editor$/, "");
 		window.location.href = `/editor#${path}`;
 	} else {
 		document.getElementById("main").style.display = "";
