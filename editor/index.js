@@ -14,7 +14,7 @@ const loadRender = () => {
 		const value = editor.getSession().getValue();
 		setSavedValue(value);
 		const render = md.render(value);
-		return insertRender($iframe.contents().find("main"), folder(page), render);
+		return insertRender($iframe.contents().find("main"), page, render);
 	} catch {}
 };
 
