@@ -90,10 +90,9 @@ const fixLinks = (relativeTo, $parent) => {
 	return $parent;
 };
 
-const renderMarkdown = (selector, file) => {
-	const $element = $(selector);
-	return getPage(file)
-		.then((render) => inlinePages(folder(file), $element.html(render)))
-		.then(evalCode)
-		.finally(() => $element.show());
-};
+const insertRender = ($element, enclosingFolder, render) =>
+	inlinePages(enclosingFolder, $element.html(render)).then(evalCode);
+
+const renderMarkdown = ($element, file) =>
+	getPage(file)
+		.then((render) => insertRender($element, folder(file), render));

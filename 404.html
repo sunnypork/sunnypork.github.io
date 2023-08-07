@@ -1,0 +1,22 @@
+<!-- Adapted from https://github.com/mktcode/dynamic-nuxt-gh-pages/blob/main/static/404.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title></title>
+</head>
+<body>
+<main id="main" style="display: none">
+	404: Not Found
+	<br>
+	<a href="/">Go Home</a>
+</main>
+</body>
+<script>
+	if (window.location.pathname.includes("/editor/")) {
+		const path = window.location.pathname.split("/editor/").slice(1).join("/editor/");
+		window.location.href = `/editor#${path}`;
+	} else {
+		document.getElementById("main").style.display = "";
+	}
+</script>
+</html>

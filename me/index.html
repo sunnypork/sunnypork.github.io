@@ -16,7 +16,7 @@
 	<meta name="msapplication-config" content="img/favicon/browserconfig.xml">
 	<meta name="theme-color" content="#ffffff">
 	<!--  CSS  -->
-	<link rel="stylesheet" href="../css/me.css">
+	<link rel="stylesheet" href="./index.css">
 	<!--  JQUERY  -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!--  MARKDOWN  -->
@@ -42,9 +42,9 @@
 
 <body>
 <div id="page">
-	<div id="root">
+	<main>
 		<p id="about" class="center"></p>
-	</div>
+	</main>
 
 
 
@@ -75,7 +75,8 @@
 	</div>
 
 	<script>
-		renderMarkdown("#root", "../me.md");
+		const $element = $("main");
+		renderMarkdown($element, "../me.md").then(() => $element.show());
 	</script>
 </div>
 </body>

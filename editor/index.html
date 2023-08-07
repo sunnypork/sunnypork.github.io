@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="/img/favicon.ico" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="theme-color" content="#000000" />
+	<meta name="description" content="a website by braxton hall" />
+	<link rel="apple-touch-icon" href="/img/icon128.png" />
+
+	<title>Tutorial</title>
+	<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js"
+			integrity="sha512-SYfDUYPg5xspsG6OOpXU366G8SZsdHOhqk/icdrYJ2E/WKZxPxze7d2HD3AyXpT7U22PZ5y74xRpqZ6A2bJ+kQ=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+	></script>
+	<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it-footnote/3.0.3/markdown-it-footnote.min.js"
+			integrity="sha512-hKiRGx002Z2n8LGMKRResAVuZkDwZ9/7CdrbZbIldJyZ6MtKHHCzt6v8Inn1nFOsANUmx/avKIkc6O5MGEDP4Q=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+	></script>
+	<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.23.4/ace.js"
+			integrity="sha512-W2EhLZb9bxEATRhug+NU1OHCaM0hovRJbR7BvUNEytEWYJKxZiL4fGz3tiPpid0nycdwW7EnGlSonxvrs+EU6g=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+	></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="../js/renderMarkdown.js"></script>
+	<script src="./tutorials.js"></script>
+	<link rel="stylesheet" href="./index.css">
+</head>
+<body>
+<div id="render-container">
+</div>
+
+<div id="editor"></div>
+<div id="tools">
+	<button id="refresh">refresh</button>
+	<button id="beginner">beginner tutorial</button>
+	<button id="intermediate">intermediate tutorial</button>
+	<button id="advanced">advanced tutorial</button>
+	<button id="copy">copy</button>
+</div>
+
+<script src="index.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-@import "global.css";
+@import "../css/global.css";
 
 body {
     background-color: var(--me);
@@ -8,7 +8,7 @@ body {
     display: none;
 }
 
-#root > h1 {
+main > h1 {
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
     text-align: center;
     font-size: 7em;
@@ -17,7 +17,7 @@ body {
     font-weight: bold;
 }
 
-#root > *:not(h1) {
+main > *:not(h1) {
     max-width: 600px;
     margin: auto;
 }
