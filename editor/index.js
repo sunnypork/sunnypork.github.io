@@ -1,11 +1,18 @@
 const page = window.location.hash.length > 1 ? window.location.hash.replace("#", "") : "me";
+const getSavedValue = () => localStorage.getItem(page) || '';
+const setSavedValue = (value) => localStorage.setItem(page, value);
 
-const $iframe = $(`<iframe src="/${page}" id="main-frame" onload="loadRender()"'></iframe>`);
+const addListener = () =>
+	$iframe.contents().find("main").one("render", () => editor.setValue(getSavedValue(), -1))
+
+const $iframe = $(`<iframe src="/${page}" id="main-frame" onload="addListener()" '></iframe>`);
 $iframe.appendTo('#render-container');
 
 const loadRender = () => {
 	try {
-		const render = md.render(editor.getSession().getValue());
+		const value = editor.getSession().getValue();
+		setSavedValue(value);
+		const render = md.render(value);
 		return insertRender($iframe.contents().find("main"), folder(page), render);
 	} catch {}
 };
@@ -27,9 +34,7 @@ const refresh = () =>
 document.getElementById("refresh").addEventListener("click", refresh);
 
 document.getElementById("copy").addEventListener("click", () =>
-	navigator.clipboard.writeText(editor.getSession().getValue()).then(() => alert("copied markdown text to clipboard")));
+	navigator.clipboard.writeText(getSavedValue()).then(() => alert("copied markdown text to clipboard")));
 document.getElementById("beginner").addEventListener("click", () => editor.setValue(BEGINNER, -1));
 document.getElementById("intermediate").addEventListener("click", () => editor.setValue(INTERMEDIATE, -1));
 document.getElementById("advanced").addEventListener("click", () => editor.setValue(ADVANCED, -1));
-
-refresh();

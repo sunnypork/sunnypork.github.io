@@ -91,7 +91,9 @@ const fixLinks = (relativeTo, $parent) => {
 };
 
 const insertRender = ($element, enclosingFolder, render) =>
-	inlinePages(enclosingFolder, $element.html(render)).then(evalCode);
+	inlinePages(enclosingFolder, $element.html(render))
+		.then(evalCode)
+		.then(() => $element?.[0]?.dispatchEvent(new Event("render")));
 
 const renderMarkdown = ($element, file) =>
 	getPage(file)
