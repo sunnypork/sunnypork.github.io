@@ -9,9 +9,15 @@ const moveMe = ($game, $window) => {
 
 const runAway = ($game, $window) => {
     if (!$game.hasClass("win")) {
-        const left = random(0, 2) === 0 ? -$game.width() : $window.width();
-        const top = random(0, 2) === 0 ? -$game.height() : $window.height();
-        $game.css({left, top});
+        random(0, 2)
+            ? $game.css({
+                left: -$game.width(),
+                top: getRandomPropertyValue($game, $window, "height", "top"),
+            })
+            : $game.css({
+                left: getRandomPropertyValue($game, $window, "width", "left"),
+                top: -$game.height()
+            });
     }
 };
 
