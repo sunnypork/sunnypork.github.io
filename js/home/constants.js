@@ -47,6 +47,7 @@ const WIGGLE_MAX_POSITIONS = 20;
 const WIGGLE_ABS_MAX_DEGREES = 5;
 
 //// For the clicking game
+const MIN_WIDTH_FOR_PLAY_TOOLTIP = 768;
 const HESITATION_MAX_MS = 200;
 const CATCH_ATTEMPTS_MIN = 5;
 const CATCH_ATTEMPTS_MAX = 10;

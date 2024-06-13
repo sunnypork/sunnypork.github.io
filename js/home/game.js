@@ -124,7 +124,10 @@ $(async () => {
     $meemu.on("mousedown", win($game, $window));
     moveMe($game, $window);
     $game.show();
-    showCatchMe($game, $window);
+    const width = $window.width();
+    if ($window.height() < width && width >= MIN_WIDTH_FOR_PLAY_TOOLTIP) {
+        showCatchMe($game, $window);
+    }
     if (window.location.hash === "#guest-book") {
         $game.trigger('mouseenter');
         $meemu.trigger('mousedown');
