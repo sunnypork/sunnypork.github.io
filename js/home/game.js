@@ -53,7 +53,7 @@ const win = ($game, $window) => (event) => {
     $game.find("#meemu").fadeOut("fast");
     $game.find("a").on("click", (event) => event.stopPropagation());
     setTimeout(
-        () => $game.find("#win-screen").fadeIn(),
+        () => $game.find("#win-screen").css("display", "flex").fadeIn(),
         250
     );
     setTimeout(
