@@ -62,7 +62,7 @@ const win = ($game, $window) => (event) => {
             if (window.location.hash !== "#guest-book") {
                 history.pushState(null, null, "#guest-book");
             }
-            $window.one(
+            $window.on(
                 "click",
                 (event) => {
                     event.preventDefault();
