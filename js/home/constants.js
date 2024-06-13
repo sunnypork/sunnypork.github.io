@@ -47,10 +47,6 @@ const WIGGLE_MAX_POSITIONS = 20;
 const WIGGLE_ABS_MAX_DEGREES = 5;
 
 //// For the clicking game
-// Minimum width of the screen to enable the game
-const MIN_WIDTH_TO_PLAY = 768;
-// Chance to play the game is 1 out of this number
-const CHANCE_TO_PLAY_ONE_OF = 3;
-const HESITATION_MAX_MS = 8;
+const HESITATION_MAX_MS = 200;
 const CATCH_ATTEMPTS_MIN = 5;
 const CATCH_ATTEMPTS_MAX = 10;
