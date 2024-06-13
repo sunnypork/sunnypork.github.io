@@ -53,13 +53,15 @@ const win = ($game, $window) => (event) => {
     $game.find("#meemu").fadeOut("fast");
     $game.find("a").on("click", (event) => event.stopPropagation());
     setTimeout(
-        () => $game.find("#win-screen").css("display", "flex").fadeIn(),
+        () => $game.find("#win-screen").fadeIn().css("display", "flex"),
         250
     );
     setTimeout(
         () => {
             $game.css({cursor: "pointer"});
-            history.pushState(null, null, "#guest-book");
+            if (window.location.hash !== "#guest-book") {
+                history.pushState(null, null, "#guest-book");
+            }
             $window.one(
                 "click",
                 (event) => {
@@ -108,6 +110,8 @@ $(async () => {
     let catchAttempts = random(CATCH_ATTEMPTS_MIN, CATCH_ATTEMPTS_MAX);
     const $game = $("#game");
     const $meemu = $("#meemu");
+    const $guestBook = $("#guest-book");
+    $guestBook.on('load', () => $guestBook.fadeIn());
     const onMouseEnter = () => {
         catchAttempts = catchAttempts - 1;
         if (catchAttempts > 0) {
@@ -121,4 +125,8 @@ $(async () => {
     moveMe($game, $window);
     $game.show();
     showCatchMe($game, $window);
+    if (window.location.hash === "#guest-book") {
+        $game.trigger('mouseenter');
+        $meemu.trigger('mousedown');
+    }
 });
