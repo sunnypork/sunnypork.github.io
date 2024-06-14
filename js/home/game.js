@@ -112,7 +112,17 @@ $(async () => {
     const $meemu = $("#meemu");
     const $guestBook = $("#guest-book");
     $guestBook.on('load', () => $guestBook.fadeIn());
+
+    let wanderTimeout;
+    const wander = () => {
+        onMouseEnter();
+        if (catchAttempts) {
+            wanderTimeout = setTimeout(() => wander(), random(200, 1500));
+        }
+    };
+
     const onMouseEnter = () => {
+        wanderTimeout && clearTimeout(wanderTimeout);
         catchAttempts = catchAttempts - 1;
         if (catchAttempts > 0) {
             hesitate().then(() => moveMe($game, $window));
@@ -127,6 +137,8 @@ $(async () => {
     const width = $window.width();
     if ($window.height() < width && width >= MIN_WIDTH_FOR_PLAY_TOOLTIP) {
         showCatchMe($game, $window);
+    } else {
+        wander();
     }
     if (window.location.hash === "#guest-book") {
         $game.trigger('mouseenter');
