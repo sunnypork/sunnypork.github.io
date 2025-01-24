@@ -19,21 +19,7 @@
 	<link rel="stylesheet" href="./index.css">
 	<!--  JQUERY  -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<!--  MARKDOWN  -->
-	<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js"
-			integrity="sha512-SYfDUYPg5xspsG6OOpXU366G8SZsdHOhqk/icdrYJ2E/WKZxPxze7d2HD3AyXpT7U22PZ5y74xRpqZ6A2bJ+kQ=="
-			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
-	></script>
-	<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it-footnote/3.0.3/markdown-it-footnote.min.js"
-			integrity="sha512-hKiRGx002Z2n8LGMKRResAVuZkDwZ9/7CdrbZbIldJyZ6MtKHHCzt6v8Inn1nFOsANUmx/avKIkc6O5MGEDP4Q=="
-			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
-	></script>
 	<!--  JS  -->
-	<script src="../js/renderMarkdown.js"></script>
 	<script src="../js/util.js"></script>
 	<script src="../js/linkRedirector.js"></script>
 	<script src="../js/fadeIn.js"></script>
@@ -42,11 +28,15 @@
 
 <body>
 <div id="page">
-	<main>
-		<p id="about" class="center"></p>
-	</main>
+	<div id="heading" class="center">
+		<h1>Sunny Park</h1>
+	</div>
 
-
+	<p id="about" class="center">
+		Sunny is a 2? years old kid who loves to draw and make stuff. They(or she or he) like to work on multiple projects simultaneously.
+		Currently, they're interested in making picture books, music videos, and claymations.
+		They like to delve into intimate relationship between two humans and the psychology behind it, amongst many other things.
+	</p>
 
 	<div id="flipper" class="hover panel center center-elements">
 		<div class="front">
@@ -73,11 +63,6 @@
 		<a id="instagram" href="https://www.instagram.com/sunnypork"></a>
 		<a id="youtube" href="https://www.youtube.com/channel/UC7ySNqP8-bVZj1yMuZQaYDw"></a>
 	</div>
-
-	<script>
-		const $element = $("main");
-		renderMarkdown($element, "./index.md").then(() => $element.show());
-	</script>
 </div>
 </body>
 </html>

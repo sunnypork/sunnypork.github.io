@@ -19,6 +19,6 @@ A simple website made with simple tools!
 
 ## Adding to About Me
 
-1. Go to [`me/index.md`](./me/index.md)
+1. Go to [`me/index.html`](./me/index.html)
 1. Edit the text!
 
